@@ -1,14 +1,33 @@
-import React, { useState } from 'react';
-import { Code2, Calendar, Users, HelpCircle } from 'lucide-react';
-import FeaturesGrid from './FeaturesGrid';
-
+import React, { useState } from "react";
+import { Code2, Calendar, Users, HelpCircle } from "lucide-react";
+import FeaturesGrid from "./FeaturesGrid";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function LandingStatic() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
+  const handlejoin = async () => {
+    if (email === "") return;
+    console.log("karta hu");
+    toast.success("Joining.....");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/join_wait_list",
+        {
+          email,
+        }
+      );
+      console.log(response);
+      toast.success(response?.data?.data?.message);
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle waitlist signup
-    setEmail('');
+    setEmail("");
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,74 +37,117 @@ function LandingStatic() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-900 text-cream-100"
-    
-    >
+    <div className="min-h-screen bg-zinc-900 text-cream-100">
       {/* Navigation */}
       <nav className="px-6 py-4 flex justify-between md:mx-32 items-center relative z-50">
-        <div className="text-green-400 cursor-pointer font-mono text-xl font-bold pressfont" onClick={()=>{
-          window.location.href = "/"
-        }}>HackFest'25</div>
-        
+        <div
+          className="text-green-400 cursor-pointer font-mono text-xl font-bold pressfont"
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
+          HackFest'25
+        </div>
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-8">
-          <a href="#about" className="text-gray-300 hover:text-green-400 transition-colors">About</a>
-          <a href="#schedule" className="text-gray-300 hover:text-green-400 transition-colors">Schedule</a>
-          <a href="#sponsors" className="text-gray-300 hover:text-green-400 transition-colors">Sponsors</a>
-          <a href="#faq" className="text-gray-300 hover:text-green-400 transition-colors">FAQ</a>
+          <a
+            href="#about"
+            className="text-gray-300 hover:text-green-400 transition-colors"
+          >
+            About
+          </a>
+          <a
+            href="#schedule"
+            className="text-gray-300 hover:text-green-400 transition-colors"
+          >
+            Schedule
+          </a>
+          <a
+            href="#sponsors"
+            className="text-gray-300 hover:text-green-400 transition-colors"
+          >
+            Sponsors
+          </a>
+          <a
+            href="#faq"
+            className="text-gray-300 hover:text-green-400 transition-colors"
+          >
+            FAQ
+          </a>
         </div>
-        
+
         {/* Mobile Hamburger Button */}
-        <button 
+        <button
           className="md:hidden text-gray-300 focus:outline-none z-50"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           {!isMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           )}
         </button>
       </nav>
-      
+
       {/* Mobile Menu - Full Screen with Transition */}
-      <div 
+      <div
         className={`md:hidden fixed inset-0 bg-zinc-900 z-40 transition-all duration-300 ease-in-out ${
-          isMenuOpen 
-            ? 'opacity-100 visible' 
-            : 'opacity-0 invisible'
+          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
         <div className="flex flex-col justify-center items-center h-full">
           <div className="flex flex-col items-center justify-center gap-10 w-full h-full">
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
               About
             </a>
-            <a 
-              href="#schedule" 
+            <a
+              href="#schedule"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
               Schedule
             </a>
-            <a 
-              href="#sponsors" 
+            <a
+              href="#sponsors"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
               Sponsors
             </a>
-            <a 
-              href="#faq" 
+            <a
+              href="#faq"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
@@ -94,8 +156,6 @@ function LandingStatic() {
           </div>
         </div>
       </div>
-      
-      
 
       {/* Hero Section */}
       <main className="container mx-auto px-4 pt-20 text-center">
@@ -103,16 +163,17 @@ function LandingStatic() {
           <div className="inline-block px-4 py-1 bg-greentext-green-400/10 text-green-400 rounded-full font-mono">
             Coming Soon
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl font-mono space-y-4 pressfont">
             <div className="text-orange-100">Get Ready to</div>
             <div className="text-green-400">Innovate!</div>
           </h1>
 
           <p className="max-w-2xl mx-auto text-gray-400 text-lg">
-            The countdown has begun for Hackfest 2025—where bold ideas meet real-world solutions. 
-            It's more than just a hackathon; it's the arena where innovators, coders, 
-            designers, and problem-solvers come together to reshape the future.
+            The countdown has begun for Hackfest 2025—where bold ideas meet
+            real-world solutions. It's more than just a hackathon; it's the
+            arena where innovators, coders, designers, and problem-solvers come
+            together to reshape the future.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto flex gap-2">
@@ -126,6 +187,7 @@ function LandingStatic() {
             />
             <button
               type="submit"
+              onClick={handlejoin}
               className="px-6 py-2 bg-greentext-green-400 text-white rounded-lg hover:bg-greentext-green-400/90 transition-colors"
             >
               Join Waitlist
@@ -139,6 +201,7 @@ function LandingStatic() {
       <footer className="mt-20 py-6 text-center text-gray-400">
         <p>© 2025 HackFest. All rights reserved.</p>
       </footer>
+      <ToastContainer />
     </div>
   );
 }
