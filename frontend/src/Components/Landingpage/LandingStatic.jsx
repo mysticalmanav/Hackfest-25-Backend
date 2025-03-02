@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SplitText from "../UI/Splittext";
 import Navbar from "../Navbar/Navbar";
 import CountdownTimerPage from "../Timer/Timer";
+
 function LandingStatic() {
   const [email, setEmail] = useState("");
 
@@ -27,6 +28,7 @@ function LandingStatic() {
       toast.error(error.response.data.error);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle waitlist signup
@@ -47,10 +49,10 @@ function LandingStatic() {
 
       <main className="container mx-auto px-4 pt-20 text-center">
         <div className="space-y-6">
-          <div className="inline-block px-4 py-1 bg-greentext-green-400/10 text-green-400 rounded-full font-mono text-6xl ">
+          <div className="inline-block px-4 py-1 bg-greentext-green-400/10 text-green-400 rounded-full font-mono text-4xl md:text-6xl">
             <SplitText
               text="COMING SOON 2K25"
-              className="text-6xl font-semibold text-center"
+              className="text-4xl md:text-6xl font-semibold text-center"
               delay={150}
               animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
               animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
@@ -60,19 +62,19 @@ function LandingStatic() {
             />
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-mono space-y-4 pressfont">
+          <h1 className="text-3xl md:text-6xl font-mono space-y-4 pressfont">
             <div className="text-orange-100">Get Ready to</div>
             <div className="text-green-400">Innovate!</div>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-gray-400 text-lg">
+          <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">
             The countdown has begun for Hackfest 2025—where bold ideas meet
             real-world solutions. It's more than just a hackathon; it's the
             arena where innovators, coders, designers, and problem-solvers come
             together to reshape the future.
           </p>
 
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto flex gap-2">
+          <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col md:flex-row gap-2 px-4">
             <input
               type="email"
               value={email}
@@ -90,7 +92,7 @@ function LandingStatic() {
             </button>
           </form>
         </div>
-        <CountdownTimerPage/>
+        <CountdownTimerPage />
         <FeaturesGrid />
       </main>
 

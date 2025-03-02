@@ -40,34 +40,34 @@ const CountdownTimerPage = () => {
   }, [targetDate]);
 
   return (
-    <div className=" bg-zinc-900 flex flex-col justify-center items-center p-8">
+    <div className="bg-zinc-900 flex flex-col justify-center items-center p-4 md:p-8">
       {/* Timer Display */}
       <animated.div
         style={timerAnimation}
-        className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center"
       >
         {/* Days */}
-        <div className="p-8 bg-zinc-800 rounded-lg shadow-lg">
-          <h2 className="text-6xl md:text-8xl font-bold text-orange-100">{timeLeft.days}</h2>
-          <p className="text-2xl text-orange-100 mt-2">DAYS</p>
+        <div className="p-4 md:p-8 bg-zinc-800 rounded-lg shadow-lg">
+          <h2 className="text-4xl md:text-8xl font-bold text-orange-100">{timeLeft.days}</h2>
+          <p className="text-xl md:text-2xl text-orange-100 mt-2">DAYS</p>
         </div>
 
         {/* Hours */}
-        <div className="p-8 bg-zinc-800 rounded-lg shadow-lg">
-          <h2 className="text-6xl md:text-8xl font-bold text-orange-100">{timeLeft.hours}</h2>
-          <p className="text-2xl text-orange-100 mt-2">HOURS</p>
+        <div className="p-4 md:p-8 bg-zinc-800 rounded-lg shadow-lg">
+          <h2 className="text-4xl md:text-8xl font-bold text-orange-100">{timeLeft.hours}</h2>
+          <p className="text-xl md:text-2xl text-orange-100 mt-2">HOURS</p>
         </div>
 
         {/* Minutes */}
-        <div className="p-8 bg-zinc-800 rounded-lg shadow-lg">
-          <h2 className="text-6xl md:text-8xl font-bold text-orange-100">{timeLeft.minutes}</h2>
-          <p className="text-2xl text-orange-100 mt-2">MINUTES</p>
+        <div className="p-4 md:p-8 bg-zinc-800 rounded-lg shadow-lg">
+          <h2 className="text-4xl md:text-8xl font-bold text-orange-100">{timeLeft.minutes}</h2>
+          <p className="text-xl md:text-2xl text-orange-100 mt-2">MINUTES</p>
         </div>
 
         {/* Seconds */}
-        <div className="p-8 bg-zinc-800 rounded-lg shadow-lg">
-          <h2 className="text-6xl md:text-8xl font-bold text-orange-100">{timeLeft.seconds}</h2>
-          <p className="text-2xl text-center text-orange-100 mt-2">SECONDS</p>
+        <div className="p-4 md:p-8 bg-zinc-800 rounded-lg shadow-lg">
+          <h2 className="text-4xl md:text-8xl font-bold text-orange-100">{timeLeft.seconds}</h2>
+          <p className="text-xl md:text-2xl text-orange-100 mt-2">SECONDS</p>
         </div>
       </animated.div>
     </div>
