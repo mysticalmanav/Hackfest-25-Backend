@@ -25,7 +25,7 @@ const ComingSoonPage = () => {
           <animated.h1
             key={index}
             style={props}
-            className="text-8xl md:text-9xl font-bold text-orange-100 mb-4"
+            className="text-6xl md:text-9xl font-bold text-orange-100 mb-4"
           >
             {text[index]}
           </animated.h1>
@@ -33,12 +33,12 @@ const ComingSoonPage = () => {
       </div>
 
       {/* Subtext */}
-      <p className="text-orange-100 text-lg md:text-xl mt-8 text-center">
+      <p className="text-orange-100 text-base md:text-xl mt-8 text-center px-4">
         We're working hard to bring you something amazing. Stay tuned!
       </p>
 
       {/* Optional: Progress Bar Animation */}
-      <div className="w-full max-w-md mt-12">
+      <div className="w-full max-w-md mt-12 px-4">
         <animated.div
           style={{
             width: '100%',
