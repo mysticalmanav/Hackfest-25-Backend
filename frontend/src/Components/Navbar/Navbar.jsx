@@ -11,7 +11,13 @@ const Navbar = () => {
     <nav className="bg-zinc-900 p-4 fixed w-full z-50 font-poppins">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo or Brand Name */}
-        <a href="/" className="text-3xl font-bold text-green-400">
+        <a
+          href="/"
+          className="text-3xl font-bold text-green-400"
+          style={{
+            fontFamily: "'Courier New', Courier, monospace",
+          }}
+        >
           HackFest'25
         </a>
 
@@ -20,12 +26,18 @@ const Navbar = () => {
           <a
             href="/aboutus"
             className="text-orange-100 hover:text-green-400 transition-colors font-bold  text-2xl"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+            }}
           >
             About
           </a>
           <a
             href="/Team"
             className="text-orange-100 hover:text-green-400 transition-colors font-bold text-2xl"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+            }}
           >
             Team
           </a>
@@ -95,6 +107,9 @@ const Navbar = () => {
               href="/aboutus"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+              }}
             >
               About
             </a>
@@ -102,6 +117,9 @@ const Navbar = () => {
               href="/Team"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+              }}
             >
               Team
             </a>
