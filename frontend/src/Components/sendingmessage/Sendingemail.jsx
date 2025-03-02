@@ -1,168 +1,123 @@
+import axios from "axios";
 import React, { useState } from "react";
-
-/*
-  Example usage: 
-  1) /api/users → GET all users (returns an array of user objects, each with "email" or relevant fields). 
-  2) /api/hackfest/send → POST, expects { subject, message, emails: [arrayOfEmailAddresses] }
-
-  Ensure you have Tailwind CSS set up, for styling to work properly.
-*/
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import Navbar from "../Navbar/Navbar.jsx";
+import SplitText from "../UI/Splittext.jsx";
 function HackfestEmailPage() {
-  const [users, setUsers] = useState([]);
-  const [subject, setSubject] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [fetchError, setFetchError] = useState("");
-  const [sendError, setSendError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
-  // 1) Fetch all users
-  const handleFetchUsers = async () => {
-    try {
-      setLoading(true);
-      setFetchError("");
-      setSendError("");
-      setSuccessMessage("");
-
-      const response = await fetch("/api/users");
-      if (!response.ok) {
-        throw new Error("Failed to fetch users from server");
-      }
-      const data = await response.json();
-      setUsers(data.users || []); // Adjust if your backend returns differently
-    } catch (error) {
-      setFetchError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 2) Send Hackfest Emails
   const handleSendEmails = async () => {
+    if (!email || !message) {
+      toast.info("Please provide both email and message.");
+      return;
+    }
+
+    setLoading(true);
+    toast.info("Sending email...");
+
     try {
-      setLoading(true);
-      setSendError("");
-      setFetchError("");
-      setSuccessMessage("");
-
-      // Extract email addresses from users
-      const emails = users.map((u) => u.email).filter(Boolean);
-
-      const response = await fetch("/api/hackfest/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          subject,
+      const response = await axios.post(
+        "http://localhost:5000/api/sendingmessage",
+        {
+          email,
           message,
-          emails,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to send emails to users");
-      }
-      const data = await response.json();
-      if (!data.success) {
-        throw new Error(data.message || "Email sending error");
-      }
+        }
+      );
 
-      setSuccessMessage("Hackfest emails sent successfully!");
+      if (response) {
+        toast.success(response.data.message || "Email sent successfully!");
+      }
     } catch (error) {
-      setSendError(error.message);
+      console.error(error);
+      toast.error(error.response?.data?.message || "Failed to send email.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-2xl">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Hackfest Email Sender</h1>
+    <>
+      <Navbar />
+      <div className="mb-2 h-7"></div>
+      <div className="min-h-screen bg-zinc-900 flex justify-center items-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="bg-transparent border-2 border-orange-100/20 shadow-2xl rounded-2xl p-8 w-full max-w-2xl transform transition-all hover:scale-105"
+        >
+          <h1 className=" font-bold text-orange-100 mb-6 text-center">
+            <SplitText
+              text="Send Email to Hackfest Users"
+              className="text-3xl font-semibold text-center"
+              delay={150}
+              animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+              easing="easeOutCubic"
+              threshold={0.2}
+              rootMargin="-50px"
+            />
+          </h1>
 
-        <div className="mb-6">
-          <button
-            onClick={handleFetchUsers}
-            disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+            className="mb-6"
           >
-            {loading ? "Loading..." : "Fetch All Users"}
-          </button>
-          {fetchError && (
-            <p className="text-red-600 mt-2">{fetchError}</p>
-          )}
-        </div>
+            <label className="block mb-2 font-semibold text-orange-100">
+              User Email
+            </label>
+            <input
+              type="email"
+              placeholder="Enter email..."
+              className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all bg-zinc-800 text-orange-100 placeholder-orange-100/50"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </motion.div>
 
-        {users.length > 0 && (
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-700">
-              Users ({users.length})
-            </h2>
-            <ul className="list-disc list-inside mt-2 max-h-32 overflow-y-auto bg-gray-50 p-2 rounded">
-              {users.map((user) => (
-                <li key={user.email || user.userId} className="text-sm text-gray-700">
-                  {user.name ? `${user.name} - ` : ""}{user.email}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div className="mb-6">
-          <label className="block mb-1 font-semibold text-gray-700">
-            Email Subject
-          </label>
-          <Input
-            placeholder="Hackfest 2023: Important Updates!"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          />
-        </div>
-        <div className="mb-6">
-          <label className="block mb-1 font-semibold text-gray-700">
-            Email Message
-          </label>
-          <textarea
-            className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-            rows={6}
-            placeholder="Hello Hackfest Participants..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-6">
-          <button
-            onClick={handleSendEmails}
-            disabled={loading || users.length === 0}
-            className={`${
-              users.length === 0 ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
-            } text-white font-semibold py-2 px-4 rounded`}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
+            className="mb-6"
           >
-            {loading ? "Sending..." : "Send Hackfest Emails"}
-          </button>
-          {sendError && (
-            <p className="text-red-600 mt-2">{sendError}</p>
-          )}
-          {successMessage && (
-            <p className="text-green-600 mt-2">{successMessage}</p>
-          )}
-        </div>
+            <label className="block mb-2 font-semibold text-orange-100">
+              Email Message
+            </label>
+            <textarea
+              className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all bg-zinc-800 text-orange-100 placeholder-orange-100/50"
+              rows={6}
+              placeholder="Write your message here..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
+            className="text-center"
+          >
+            <button
+              onClick={handleSendEmails}
+              disabled={loading}
+              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all"
+            >
+              {loading ? "Sending..." : "Send Hackfest Emails"}
+            </button>
+          </motion.div>
+        </motion.div>
+
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </div>
-    </div>
-  );
-}
-
-function Input({ placeholder, value, onChange }) {
-  return (
-    <input
-      type="text"
-      className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    />
+    </>
   );
 }
 

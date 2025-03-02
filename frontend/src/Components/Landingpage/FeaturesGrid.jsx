@@ -5,7 +5,7 @@ import { Code2, Calendar, Users, HelpCircle } from 'lucide-react';
 const FeatureCard = ({ icon: Icon, title, description, delay }) => {
   return (
     <motion.div 
-      className="p-6 bg-zinc-800/50 rounded-xl border border-zinc-700/50 hover:bg-zinc-700/50 transition-colors duration-300 backdrop-blur-sm"
+      className="p-6 bg-zinc-800/50 rounded-xl h-52 border border-zinc-700/50 hover:bg-zinc-700/50 transition-colors duration-300 backdrop-blur-sm"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -53,12 +53,6 @@ const FeaturesGrid = () => {
       delay: 0
     },
     {
-      icon: Calendar,
-      title: "Expert Workshops",
-      description: "Learn cutting-edge skills from industry experts and experienced mentors",
-      delay: 1
-    },
-    {
       icon: Users,
       title: "Team Collaboration",
       description: "Form teams with talented peers and build something amazing together",
@@ -90,7 +84,7 @@ const FeaturesGrid = () => {
         What Makes <span className="text-green-400">HackFest'25</span> Special
       </motion.h2>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {features.map((feature, index) => (
           <FeatureCard 
             key={index}

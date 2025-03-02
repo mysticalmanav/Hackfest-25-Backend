@@ -118,12 +118,22 @@ export const sendingmessagetoemail = async (req, res) => {
       from: "hackfest2k25@gmail.com",
       to: user.email,
       subject: "Welcome to HackFest'25!",
-      html: `<h2>Hi,</h2>
-             <p>Thank you for registering! Get ready to innovate and collaborate.</p>
-             <p>${message}</p>
-             <br>
-             <strong>Best regards,</strong><br>
-             <em>HackFest Team</em>`,
+      html: `<h2>Dear Participant,</h2>
+
+<p>Greetings from HackFest, IIT (ISM) Dhanbad!</p>
+
+<p>We are delighted to confirm your registration for HackFest, a premier 36-hour hackathon organized by NVCTI, IIT (ISM) Dhanbad. This event is designed to foster innovation, collaboration, and problem-solving skills among aspiring developers like you.</p>
+
+<p>${message}</p>
+
+<p>Get ready to ideate, innovate, and create impactful solutions. If you have any queries, please feel free to reach out to us.</p>
+
+<br>
+
+<strong>Best regards,</strong><br>
+<em>HackFest Team</em><br>
+<em>NVCTI, IIT (ISM) Dhanbad</em>
+`,
     };
 
     await transporter.sendMail(mailOptions);
