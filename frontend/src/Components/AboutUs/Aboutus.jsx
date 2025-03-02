@@ -56,15 +56,6 @@ const AboutUs = () => {
           existing day-to-day problems.
         </p>
 
-        {/* Call-to-Action Button */}
-        <div className="text-center mt-8">
-          <button
-            onClick={() => alert('Join HackFest now!')}
-            className="bg-green-500 text-zinc-900 px-6 py-3 rounded-lg font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all"
-          >
-            Join HackFest
-          </button>
-        </div>
       </animated.div>
     </div>
   );

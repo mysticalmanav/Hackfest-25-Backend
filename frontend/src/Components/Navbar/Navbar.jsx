@@ -8,10 +8,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-zinc-900 p-4 fixed w-full z-50">
+    <nav className="bg-zinc-900 p-4 fixed w-full z-50 font-poppins">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo or Brand Name */}
-        <a href="/" className="text-2xl font-bold text-green-400">
+        <a href="/" className="text-3xl font-bold text-green-400">
           HackFest'25
         </a>
 
@@ -19,28 +19,28 @@ const Navbar = () => {
         <div className="hidden md:flex gap-8">
           <a
             href="/aboutus"
-            className="text-gray-300 hover:text-green-400 transition-colors"
+            className="text-orange-100 hover:text-green-400 transition-colors font-bold  text-2xl"
           >
             About
           </a>
           <a
             href="/Team"
-            className="text-gray-300 hover:text-green-400 transition-colors"
+            className="text-orange-100 hover:text-green-400 transition-colors font-bold text-2xl"
           >
             Team
           </a>
-          <a
+          {/* <a
             href="/comingsoon"
-            className="text-gray-300 hover:text-green-400 transition-colors"
+            className="text-gray-300 hover:text-green-400 transition-colors font-medium"
           >
             Schedule
           </a>
           <a
             href="/comingsoon"
-            className="text-gray-300 hover:text-green-400 transition-colors"
+            className="text-gray-300 hover:text-green-400 transition-colors font-medium"
           >
             Sponsors
-          </a>
+          </a> */}
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -93,32 +93,32 @@ const Navbar = () => {
           <div className="flex flex-col items-center justify-center gap-10 w-full h-full">
             <a
               href="/aboutus"
-              className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
             >
               About
             </a>
             <a
               href="/Team"
-              className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
             >
               Team
             </a>
-            <a
+            {/* <a
               href="/comingsoon"
-              className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
             >
               Schedule
             </a>
             <a
               href="/comingsoon"
-              className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
             >
               Sponsors
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
