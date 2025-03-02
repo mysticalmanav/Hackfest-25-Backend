@@ -5,7 +5,7 @@ import { Code2, Calendar, Users, HelpCircle } from 'lucide-react';
 const FeatureCard = ({ icon: Icon, title, description, delay }) => {
   return (
     <motion.div 
-      className="p-6 bg-zinc-800/50 rounded-xl h-52 border border-zinc-700/50 hover:bg-zinc-700/50 transition-colors duration-300 backdrop-blur-sm"
+      className="p-4 lg:p-8  bg-zinc-800/50 rounded-xl h-64 border border-zinc-700/50 hover:bg-zinc-700/50 transition-colors duration-300 backdrop-blur-sm"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
