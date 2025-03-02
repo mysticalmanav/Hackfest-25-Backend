@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Sendingemail from "./Components/sendingmessage/Sendingemail.jsx";
 import Comingsoon from '../src/Components/ComingSoon/Comingsoonpage.jsx'
 import AboutUsPage from "./Components/AboutUs/Aboutuspage.jsx";
+import CoreTeamPage from "./Components/Team/CoreTeamPage.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/Messaging" element={<Sendingemail />} />
           <Route path="/comingsoon" element={<Comingsoon />} />
           <Route path="/aboutus" element={<AboutUsPage />} />
+          <Route path="/Team" element={<CoreTeamPage />} />
         </Routes>
       </BrowserRouter>
     </>

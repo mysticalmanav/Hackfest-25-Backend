@@ -16,7 +16,7 @@ function LandingStatic() {
     toast.success("Joining.....");
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/join_wait_list",
+        "https://hackfest-25-backend-1.onrender.com/api/join_wait_list",
         {
           email,
         }

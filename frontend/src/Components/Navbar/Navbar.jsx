@@ -24,6 +24,12 @@ const Navbar = () => {
             About
           </a>
           <a
+            href="/Team"
+            className="text-gray-300 hover:text-green-400 transition-colors"
+          >
+            Team
+          </a>
+          <a
             href="/comingsoon"
             className="text-gray-300 hover:text-green-400 transition-colors"
           >
@@ -91,6 +97,13 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               About
+            </a>
+            <a
+              href="/Team"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
+              onClick={toggleMenu}
+            >
+              Team
             </a>
             <a
               href="#schedule"

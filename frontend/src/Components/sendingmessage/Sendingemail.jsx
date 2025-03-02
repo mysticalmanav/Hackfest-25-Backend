@@ -21,7 +21,7 @@ function HackfestEmailPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/sendingmessage",
+        "https://hackfest-25-backend-1.onrender.com/api/sendingmessage",
         {
           email,
           message,
