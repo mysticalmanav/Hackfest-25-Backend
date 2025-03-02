@@ -106,14 +106,14 @@ const Navbar = () => {
               Team
             </a>
             <a
-              href="#schedule"
+              href="/comingsoon"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
               Schedule
             </a>
             <a
-              href="#sponsors"
+              href="/comingsoon"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl"
               onClick={toggleMenu}
             >
