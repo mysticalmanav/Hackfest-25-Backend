@@ -80,7 +80,7 @@ const CoreTeam = () => {
             name: "Mihir",
             role: "Marketing",
             bio: "Develops and implements marketing strategies to reach potential participants.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914307/Mihir_jwazth.jpg",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1740914307/Mihir_jwazth.jpg",
             social: {
                 email: "22je0569@iitism.ac.in"
             }
@@ -251,9 +251,9 @@ const CoreTeam = () => {
                             <div className="relative h-64 w-full">
                                 <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                                <div className="absolute bottom-0 w-full p-6">
+                                <div className="absolute bottom-0 w-full p-4">
                                     <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                                    <p className="text-primary font-medium">{member.role}</p>
+                                    {/* <p className="text-primary font-medium">{member.role}</p> */}
                                 </div>
                             </div>
                             <div className="p-6">
