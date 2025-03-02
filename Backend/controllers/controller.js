@@ -93,3 +93,50 @@ export const sendUpdates = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const sendingmessagetoemail = async (req, res) => {
+  try {
+    console.log("Request received");
+    const { email, message } = req.body;
+    console.log("Email:", email, "Message:", message);
+
+    if (!email || !message) {
+      return res.status(400).json({
+        message: "Provide proper email and message",
+      });
+    }
+
+    const user = await Email.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        error: "Email is not registered",
+      });
+    }
+
+    console.log("Sending email...");
+    const mailOptions = {
+      from: "hackfest2k25@gmail.com",
+      to: user.email,
+      subject: "Welcome to HackFest'25!",
+      html: `<h2>Hi,</h2>
+             <p>Thank you for registering! Get ready to innovate and collaborate.</p>
+             <p>${message}</p>
+             <br>
+             <strong>Best regards,</strong><br>
+             <em>HackFest Team</em>`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully");
+
+    return res.status(200).json({
+      message: "Welcome email sent",
+    });
+  } catch (error) {
+    console.log("Error:", error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
