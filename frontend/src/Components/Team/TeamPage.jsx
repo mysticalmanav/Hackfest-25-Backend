@@ -6,6 +6,36 @@ const CoreTeam = () => {
     // Process team members data with formatted image URLs
     const teamMembers = [
         {
+            id: 26,
+            name: "Prof. Alok Kumar Das",
+            role: "Dean IIE (IIT Dhanbad)",
+            bio: "",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740946473/Screenshot_2025-03-03_012601_d6owsa.png",
+            social: {
+                email: ""
+            }
+        },
+        {
+            id: 26,
+            name: "Prof. Sourav Srivastava",
+            role: "Faculty Advisor (Hackfest '25)",
+            bio: "",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740946743/Screenshot_2025-03-03_014833_dmj06y.png",
+            social: {
+                email: ""
+            }
+        },
+        {
+            id: 7,
+            name: "Manav Sharma",
+            role: "Technical",
+            bio: "Manages the technical infrastructure and provides support during the event.",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914307/ManavSharma_ecbrfp.jpg",
+            social: {
+                email: "22je0539@iitism.ac.in"
+            }
+        },
+        {
             id: 1,
             name: "Aaditya Jain",
             role: "Sponsorship and Marketing",
@@ -63,16 +93,6 @@ const CoreTeam = () => {
             imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1740914307/KchitizRaj_uip7c5.jpg",
             social: {
                 email: "22je0469@iitism.ac.in"
-            }
-        },
-        {
-            id: 7,
-            name: "Manav Sharma",
-            role: "Technical",
-            bio: "Manages the technical infrastructure and provides support during the event.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914307/ManavSharma_ecbrfp.jpg",
-            social: {
-                email: "22je0539@iitism.ac.in"
             }
         },
         {
@@ -253,21 +273,21 @@ const CoreTeam = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                                 <div className="absolute bottom-0 w-full p-4">
                                     <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                                    {/* <p className="text-primary font-medium">{member.role}</p> */}
+                                    {member.id === 26 && (<p className="text-primary font-medium text-green-400">{member.role}</p>)}
                                 </div>
                             </div>
                             <div className="p-6">
-                                <p className="text-gray-300 mb-4">{member.bio}</p>
-                                <div className="flex space-x-4">
-                                    {member.social.email && (
+                                {/* <p className="text-gray-300 mb-4">{member.bio}</p> */}
+                                {member.social.email && (
+                                    <div className="flex space-x-4">
                                         <a
                                             href={`mailto:${member.social.email}`}
                                             className="text-gray-400 hover:text-green-400 transition-colors"
                                         >
                                             <Mail size={20} />
                                         </a>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     ))}
