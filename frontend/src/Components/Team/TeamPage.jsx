@@ -20,19 +20,29 @@ const CoreTeam = () => {
             name: "Prof. Sourav Srivastava",
             role: "Faculty Advisor (Hackfest '25)",
             bio: "",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740946743/Screenshot_2025-03-03_014833_dmj06y.png",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/c_pad,b_gen_fill,w_1800,h_1100/v1740994161/1740994145812_prb0ks.jpg",
             social: {
                 email: ""
             }
         },
         {
-            id: 7,
-            name: "Manav Sharma",
-            role: "Technical",
-            bio: "Manages the technical infrastructure and provides support during the event.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914307/ManavSharma_ecbrfp.jpg",
+            id: 5,
+            name: "Shreyansh Shandilya",
+            role: "Advisor",
+            bio: "Provides strategic guidance and mentorship to the organizing team.",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/c_pad,b_gen_fill,w_1700,h_1500/v1740993293/1740991786565_m1te0w_c_crop_w_1000_h_1400_e_improve_zuldam_c_pad_b_gen_fill_w_1000_h_1700_uwtlwe.jpg",
             social: {
-                email: "22je0539@iitism.ac.in"
+                email: "connect@shreyanshandilya.me"
+            }
+        },
+        {
+            id: 5,
+            name: "Ashvery Kumar Saini",
+            role: "Advisor",
+            bio: "Provides strategic guidance and mentorship to the organizing team.",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914308/AshveryKumarSaini_kmuvor.jpg",
+            social: {
+                email: "21JE0188@iitism.ac.in"
             }
         },
         {
@@ -75,16 +85,7 @@ const CoreTeam = () => {
                 email: "22je0092@iitism.ac.in"
             }
         },
-        {
-            id: 5,
-            name: "Ashvery Kumar Saini",
-            role: "Advisor",
-            bio: "Provides strategic guidance and mentorship to the organizing team.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914308/AshveryKumarSaini_kmuvor.jpg",
-            social: {
-                email: "21JE0188@iitism.ac.in"
-            }
-        },
+
         {
             id: 6,
             name: "Kchitiz Raj",
@@ -93,6 +94,16 @@ const CoreTeam = () => {
             imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1740914307/KchitizRaj_uip7c5.jpg",
             social: {
                 email: "22je0469@iitism.ac.in"
+            }
+        },
+        {
+            id: 7,
+            name: "Manav Sharma",
+            role: "Technical",
+            bio: "Manages the technical infrastructure and provides support during the event.",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1740914307/ManavSharma_ecbrfp.jpg",
+            social: {
+                email: "22je0539@iitism.ac.in"
             }
         },
         {
@@ -299,3 +310,14 @@ const CoreTeam = () => {
 
 
 export default CoreTeam;;
+
+
+
+
+
+
+
+
+
+
+
