@@ -30,7 +30,7 @@ const CoreTeam = () => {
             name: "Shreyansh Shandilya",
             role: "Advisor",
             bio: "Provides strategic guidance and mentorship to the organizing team.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/c_pad,b_gen_fill,w_1700,h_1500/v1740993293/1740991786565_m1te0w_c_crop_w_1000_h_1400_e_improve_zuldam_c_pad_b_gen_fill_w_1000_h_1700_uwtlwe.jpg",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/v1741001522/WhatsApp_Image_2025-03-03_at_16.13.44_b31a3775_vemqy0.jpg",
             social: {
                 email: "connect@shreyanshandilya.me"
             }
