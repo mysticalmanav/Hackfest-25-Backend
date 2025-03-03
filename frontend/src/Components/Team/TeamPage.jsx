@@ -248,7 +248,7 @@ const CoreTeam = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
-                        Meet Our <span className="text-green-400">Core Team</span>
+                        Meet Our <span className="bg-gradient-to-r from-red-800  to-blue-500 text-transparent bg-clip-text">Core Team</span>
                     </h1>
                     <p className="text-lg text-gray-300">
                         The passionate individuals behind HACKFEST'25, working tirelessly to create an unforgettable experience for all participants.
@@ -273,7 +273,7 @@ const CoreTeam = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                                 <div className="absolute bottom-0 w-full p-4">
                                     <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                                    {member.id === 26 && (<p className="text-primary font-medium text-green-400">{member.role}</p>)}
+                                    {member.id === 26 && (<p className="text-primary font-medium bg-gradient-to-r from-red-800 via-blue-500 to-white text-transparent bg-clip-text">{member.role}</p>)}
                                 </div>
                             </div>
                             <div className="p-6">
@@ -282,7 +282,7 @@ const CoreTeam = () => {
                                     <div className="flex space-x-4">
                                         <a
                                             href={`mailto:${member.social.email}`}
-                                            className="text-gray-400 hover:text-green-400 transition-colors"
+                                            className="text-gray-400 hover:text-red-400 transition-colors"
                                         >
                                             <Mail size={20} />
                                         </a>

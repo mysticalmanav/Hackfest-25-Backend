@@ -49,7 +49,7 @@ function LandingStatic() {
 
       <main className="container mx-auto px-4 pt-20 text-center">
         <div className="space-y-6">
-          <div className="inline-block px-4 py-1 bg-greentext-green-400/10 text-green-400 rounded-full font-mono text-4xl md:text-6xl">
+          <div className="inline-block px-4 py-1 bg-greentext-green-400/10 text-orange-100 rounded-full font-mono pressfont text-4xl md:text-6xl">
             <SplitText
               text="COMING SOON 2K25"
               className="text-4xl md:text-6xl font-semibold text-center"
@@ -63,8 +63,8 @@ function LandingStatic() {
           </div>
 
           <h1 className="text-3xl md:text-6xl font-mono space-y-4 pressfont">
-            <div className="text-orange-100">Get Ready to</div>
-            <div className="text-green-400">Innovate!</div>
+            <div className="bg-gradient-to-r from-red-800 via-blue-500 to-white text-transparent bg-clip-text">Get Ready to</div>
+            <div className="bg-gradient-to-r from-red-800 to-white text-transparent bg-clip-text">Innovate!</div>
           </h1>
 
           <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">

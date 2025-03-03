@@ -13,7 +13,7 @@ const Navbar = () => {
         {/* Logo or Brand Name */}
         <a
           href="/"
-          className="text-3xl font-bold text-green-400"
+          className="text-3xl text-orange-100 font-extrabold"
           style={{
             fontFamily: "'Courier New', Courier, monospace",
           }}

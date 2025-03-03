@@ -108,7 +108,7 @@ function HackfestEmailPage() {
             <button
               onClick={handleSendEmails}
               disabled={loading}
-              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all"
+              className="bg-green-600  text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all"
             >
               {loading ? "Sending..." : "Send Hackfest Emails"}
             </button>

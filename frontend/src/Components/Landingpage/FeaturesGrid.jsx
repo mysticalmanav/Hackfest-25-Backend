@@ -81,7 +81,7 @@ const FeaturesGrid = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        What Makes <span className="text-green-400">HackFest'25</span> Special
+        What Makes <span className="bg-gradient-to-r from-red-800 via-blue-500 to-white text-transparent bg-clip-text">HackFest'25</span> Special
       </motion.h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
