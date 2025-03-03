@@ -63,8 +63,12 @@ function LandingStatic() {
           </div>
 
           <h1 className="text-3xl md:text-6xl font-mono space-y-4 pressfont">
-            <div className="bg-gradient-to-r from-red-800 via-blue-500 to-white text-transparent bg-clip-text">Get Ready to</div>
-            <div className="bg-gradient-to-r from-red-800 to-white text-transparent bg-clip-text">Innovate!</div>
+            <div className="bg-gradient-to-r from-red-800 via-blue-500 to-white text-transparent bg-clip-text">
+              Get Ready to
+            </div>
+            <div className="bg-gradient-to-r from-red-800 to-white text-transparent bg-clip-text">
+              Innovate!
+            </div>
           </h1>
 
           <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">
@@ -74,7 +78,10 @@ function LandingStatic() {
             together to reshape the future.
           </p>
 
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto flex flex-col md:flex-row gap-2 px-4">
+          <form
+            onSubmit={handleSubmit}
+            className="max-w-md mx-auto flex flex-col md:flex-row gap-2 px-4"
+          >
             <input
               type="email"
               value={email}
@@ -93,6 +100,20 @@ function LandingStatic() {
           </form>
         </div>
         <CountdownTimerPage />
+
+        <div className="text-orange-200 text-3xl mt-10 p-1 lg:p-4">
+          {" "}
+          <SplitText
+            text="Event : April 4th to 6th, 2025."
+            className="text-md md:text-3xl lg:text-4xl text-center font-mono pressfont"
+            delay={150}
+            animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
+            animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            easing="easeOutCubic"
+            threshold={0.2}
+            rootMargin="-50px"
+          />
+        </div>
         <FeaturesGrid />
       </main>
 
