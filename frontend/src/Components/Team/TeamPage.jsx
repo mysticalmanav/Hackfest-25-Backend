@@ -36,6 +36,16 @@ const CoreTeam = () => {
             }
         },
         {
+            id: 12,
+            name: "Rukhsar",
+            role: "Advisor",
+            bio: "Provides guidance based on previous experience organizing successful hackathons.",
+            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1740914307/Rukhsarfiza_t2wbpw.jpg",
+            social: {
+                email: "21je0787@iitism.ac.in"
+            }
+        },
+        {
             id: 5,
             name: "Ashvery Kumar Saini",
             role: "Advisor",
@@ -146,16 +156,7 @@ const CoreTeam = () => {
                 email: "22je0817@iitism.ac.in"
             }
         },
-        {
-            id: 12,
-            name: "Rukhsar",
-            role: "Advisor",
-            bio: "Provides guidance based on previous experience organizing successful hackathons.",
-            imageUrl: "https://res.cloudinary.com/dcapq8uyk/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1740914307/Rukhsarfiza_t2wbpw.jpg",
-            social: {
-                email: "21je0787@iitism.ac.in"
-            }
-        },
+
         {
             id: 13,
             name: "Sagnik Pal",
