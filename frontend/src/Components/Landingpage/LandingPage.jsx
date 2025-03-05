@@ -36,14 +36,15 @@ const LandingPage = () => {
                 fontFamily: "orbitron",
                 fontWeight: "bold",
               }}
-              className='md:text-9xl text-4xl text-center text-green-400'
+              className='md:text-9xl text-4xl text-center text-orange-100'
               animate={{
                 textShadow: [
-                  "0 0 10px rgba(74, 222, 128, 0)", 
-                  "0 0 20px rgba(74, 222, 128, 0.6)", 
-                  "0 0 30px rgba(74, 222, 128, 0.4)", 
-                  "0 0 10px rgba(74, 222, 128, 0)"
-                ],
+                  "0 0 10px rgba(255, 173, 100, 0.8)",
+                  "0 0 20px rgba(255, 173, 100, 0.6)",
+                  "0 0 30px rgba(255, 173, 100, 0.4)",
+                  "0 0 40px rgba(255, 173, 100, 0.2)"
+                ]
+                
               }}
               transition={{
                 duration: 2,

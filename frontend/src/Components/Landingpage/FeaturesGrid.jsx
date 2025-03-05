@@ -20,7 +20,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => {
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay: delay * 0.1 + 0.2 }}
       >
-        <Icon className="w-10 h-10 text-green-400 mb-4" />
+        <Icon className="w-10 h-10 text-orange-200 mb-4" />
       </motion.div>
       
       <motion.h3 

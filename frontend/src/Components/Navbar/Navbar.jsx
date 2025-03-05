@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="hidden md:flex gap-8">
           <a
             href="/aboutus"
-            className="text-orange-100 hover:text-green-400 transition-colors font-bold  text-2xl"
+            className="text-orange-100 hover:text-orange-300 transition-colors font-bold  text-2xl"
             style={{
               fontFamily: "'Courier New', Courier, monospace",
             }}
@@ -34,13 +34,23 @@ const Navbar = () => {
           </a>
           <a
             href="/Team"
-            className="text-orange-100 hover:text-green-400 transition-colors font-bold text-2xl"
+            className="text-orange-100 hover:text-orange-300 transition-colors font-bold text-2xl"
             style={{
               fontFamily: "'Courier New', Courier, monospace",
             }}
           >
             Team
           </a>
+          <a
+            href="/contact"
+            className="text-orange-100 hover:text-orange-300 transition-colors font-bold text-2xl"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+            }}
+          >
+            Contact Us
+          </a>
+
           {/* <a
             href="/comingsoon"
             className="text-gray-300 hover:text-green-400 transition-colors font-medium"

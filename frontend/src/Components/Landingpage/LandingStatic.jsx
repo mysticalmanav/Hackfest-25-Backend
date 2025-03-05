@@ -93,7 +93,7 @@ function LandingStatic() {
             <button
               type="submit"
               onClick={handlejoin}
-              className="px-6 py-2 bg-greentext-green-400 text-white rounded-lg hover:bg-greentext-green-400/90 transition-colors"
+              className="px-6 py-2  bg-orange-100 rounded-lg hover:bg-red-100 text-black transition-colors"
             >
               Join Waitlist
             </button>
