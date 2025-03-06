@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import SplitText from "../UI/Splittext";
 import Navbar from "../Navbar/Navbar";
 import CountdownTimerPage from "../Timer/Timer";
-import { backendUrl } from "../../helper";
 
 function LandingStatic() {
   const [email, setEmail] = useState("");
@@ -16,9 +15,10 @@ function LandingStatic() {
     if (email === "") return;
     console.log("karta hu");
     toast.success("Joining.....");
+    console.log(import.meta.env.VITE_backendUrl)
     try {
       const response = await axios.post(
-        `${backendUrl}/api/join_wait_list`,
+        `${import.meta.env.VITE_backendUrl}/api/join_wait_list`,
         {
           email,
         }
