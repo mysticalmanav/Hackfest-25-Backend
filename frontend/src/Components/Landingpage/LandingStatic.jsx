@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SplitText from "../UI/Splittext";
 import Navbar from "../Navbar/Navbar";
 import CountdownTimerPage from "../Timer/Timer";
+import { backendUrl } from "../../helper";
 
 function LandingStatic() {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ function LandingStatic() {
     toast.success("Joining.....");
     try {
       const response = await axios.post(
-        "https://hackfest-25-backend-1.onrender.com/api/join_wait_list",
+        `${backendUrl}/api/join_wait_list`,
         {
           email,
         }

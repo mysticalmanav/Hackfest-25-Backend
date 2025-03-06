@@ -1,13 +1,14 @@
 import nodemailer from "nodemailer";
 import Email from "../models/EmailModel.js";
 
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   secure: true,
   port: 465,
   auth: {
-    user: "hackfest2k25@gmail.com",
-    pass: "tycspsjtiheloczd",
+    user: process.env.user,
+    pass: process.env.pass,
   },
 });
 
@@ -31,7 +32,7 @@ export const joinWaitList = async (req, res) => {
       res.json({ message: "Email submitted successfully!" });
 
       const mailOptions = {
-        from: "hackfest2k25@gmail.com",
+        from: process.env.user,
         to: newUser.email,
         subject: "Welcome to HackFest'25!",
         html: `<h2>Hi,</h2>
@@ -72,7 +73,7 @@ export const sendUpdates = async (req, res) => {
 
       const emailList = users.map((user) => user.email);
       const mailOptions = {
-        from: "hackfest2k25@gmail.com",
+        from: process.env.user,
         to: emailList,
         subject: subject,
         html: content,
@@ -115,7 +116,7 @@ export const sendingmessagetoemail = async (req, res) => {
 
     console.log("Sending email...");
     const mailOptions = {
-      from: "hackfest2k25@gmail.com",
+      from: process.env.user,
       to: user.email,
       subject: "Welcome to HackFest'25!",
       html: `<h2>Dear Participant,</h2>
