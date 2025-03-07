@@ -13,9 +13,8 @@ function LandingStatic() {
 
   const handlejoin = async () => {
     if (email === "") return;
-    console.log("karta hu");
     toast.success("Joining.....");
-    console.log(import.meta.env.VITE_backendUrl)
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_backendUrl}/api/join_wait_list`,
