@@ -41,7 +41,7 @@ const Navbar = () => {
           >
             Team
           </a>
-          <a
+          {/* <a
             href="/contact"
             className="text-orange-100 hover:text-orange-300 transition-colors font-bold text-2xl"
             style={{
@@ -49,7 +49,7 @@ const Navbar = () => {
             }}
           >
             Contact Us
-          </a>
+          </a> */}
 
           {/* <a
             href="/comingsoon"
