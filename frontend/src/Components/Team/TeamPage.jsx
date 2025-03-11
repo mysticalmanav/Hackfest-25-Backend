@@ -276,7 +276,7 @@ const CoreTeam = () => {
                     {teamMembers.map((member) => (
                         <motion.div
                             key={member.id}
-                            className="bg-zinc-900 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-green-400/20 border border-zinc-800"
+                            className="bg-zinc-900 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-orange-400/20 border border-zinc-800"
                             variants={itemVariants}
                             whileHover={{ y: -10, transition: { duration: 0.3 } }}
                         >

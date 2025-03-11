@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import SplitText from "../UI/Splittext";
 import Navbar from "../Navbar/Navbar";
 import CountdownTimerPage from "../Timer/Timer";
+import DualRegisterButtons from "../RegisterHereButton/RegisterHereButton2";
+import PrizePoolSection from "../PrizePoolSection/PrizePoolSection";
 
 function LandingStatic() {
   const [email, setEmail] = useState("");
@@ -36,6 +38,10 @@ function LandingStatic() {
     setEmail("");
   };
 
+  const handleRegister = () => {
+    window.open("/register", "_blank");
+  };
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -47,6 +53,9 @@ function LandingStatic() {
       {/* Navigation */}
       <Navbar />
       <div className="h-10 mb-5"></div>
+      <div className="scale-75 md:mt-0 mt-16 md:absolute top-32 left-16 z-0">
+
+      </div>
 
       <main className="container mx-auto px-4 pt-20 text-center">
         <div className="space-y-6">
@@ -72,6 +81,14 @@ function LandingStatic() {
             </div>
           </h1>
 
+          <div className="mt-12 mb-12 ">
+          <DualRegisterButtons 
+            onRegisterHere={handleRegister} 
+            unstopUrl="https://unstop.com/hackathons/hackfest-25-indian-institute-of-technology-indian-school-of-mines-iit-ism-dhanbad-1413387" 
+          />
+        </div>
+
+
           <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">
             The countdown has begun for Hackfest 2025—where bold ideas meet
             real-world solutions. It's more than just a hackathon; it's the
@@ -94,7 +111,7 @@ function LandingStatic() {
             <button
               type="submit"
               onClick={handlejoin}
-              className="px-6 py-2  bg-orange-100 rounded-lg hover:bg-red-100 text-black transition-colors"
+              className="px-6 py-2 my-6 md:my-0 bg-orange-100 rounded-lg hover:bg-red-100 text-black transition-colors"
             >
               Join Waitlist
             </button>
@@ -115,6 +132,9 @@ function LandingStatic() {
             rootMargin="-50px"
           />
         </div>
+
+    {/* <PrizePoolSection /> */}
+        
         <FeaturesGrid />
       </main>
 

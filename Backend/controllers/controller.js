@@ -12,10 +12,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+
 export const joinWaitList = async (req, res) => {
+console.log(process.env.user);
   try {
     const { email } = req.body;
     const user = await Email.findOne({ email });
+
+    
 
     if (user) {
       return res.status(400).json({

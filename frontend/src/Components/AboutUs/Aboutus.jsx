@@ -22,32 +22,38 @@ const AboutHackFestPage = () => {
 
         {/* Paragraph */}
         <motion.p
-          initial={{ opacity: 0, x: +200 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-          className="lg:w-6/12 md:w-10/12 w-[92%] text-orange-100 md:text-lg text-base font-light text-justify mb-10"
-        >
-          <strong>HackFest’25</strong> is a premier{" "}
-          <strong>36-hour hackathon</strong> organized by
-          <strong>NVCTI, IIT (ISM) Dhanbad</strong>, taking place from{" "}
-          <strong>APRIL 4th to 6th, 2025</strong>. It provides a competitive platform
-          for students to collaborate, innovate, and work with cutting-edge
-          technologies like{" "}
-          <strong>Machine Learning, Blockchain, Cybersecurity, and IoT</strong>.
-          Participants engage in{" "}
-          <strong>brainstorming, hands-on coding, and problem-solving</strong>{" "}
-          to develop impactful solutions. HackFest serves as a launchpad for
-          future industry leaders, offering
-          <strong>
-            mentorship, networking opportunities, and exposure to industry
-            trends
-          </strong>
-          . With <strong>4K+ participants</strong> and{" "}
-          <strong>200+ repositories</strong> from previous editions, HackFest
-          pushes the boundaries of technological excellence. It fosters{" "}
-          <strong>teamwork, innovation, and entrepreneurial thinking</strong>,
-          proving that the right platform can drive real change.
-        </motion.p>
+  initial={{ opacity: 0, x: +200 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 2, ease: "easeInOut" }}
+  className="lg:w-6/12 md:w-10/12 w-[92%] text-orange-100 md:text-lg text-base font-light text-justify mb-10"
+>
+  <strong>HackFest’25</strong> is a premier <strong>36-hour hackathon</strong> organized by{" "}
+  <motion.span
+    initial={{ backgroundSize: "0% 100%" }}
+    whileInView={{ backgroundSize: "100% 100%" }}
+    transition={{ duration: 1.5, ease: "easeInOut", delay: 1 }}
+    className="bg-gradient-to-r from-red-800 to-blue-500 bg-[length:0%_100%] bg-no-repeat bg-left px-1"
+  >
+    <strong>NVCTI, IIT (ISM) Dhanbad</strong>
+  </motion.span>
+  , taking place from{" "}
+  <motion.span
+    initial={{ backgroundSize: "0% 100%" }}
+    whileInView={{ backgroundSize: "100% 100%" }}
+    transition={{ duration: 1.5, ease: "easeInOut", delay: 1.2 }}
+    className="bg-gradient-to-r from-red-800 to-blue-500 bg-[length:0%_100%] bg-no-repeat bg-left px-1"
+  >
+    <strong>April 4th to 6th, 2025</strong>
+  </motion.span>
+  . It provides a competitive platform for students to collaborate, innovate, and work with cutting-edge
+  technologies like <strong>Machine Learning, Blockchain, Cybersecurity, and IoT</strong>. Participants engage in{" "}
+  <strong>brainstorming, hands-on coding, and problem-solving</strong> to develop impactful solutions. HackFest serves as a launchpad for
+  future industry leaders, offering
+  <strong> mentorship, networking opportunities, and exposure to industry trends</strong>. With <strong>4K+ participants</strong> and{" "}
+  <strong>200+ repositories</strong> from previous editions, HackFest pushes the boundaries of technological excellence. It fosters{" "}
+  <strong>teamwork, innovation, and entrepreneurial thinking</strong>, proving that the right platform can drive real change.
+</motion.p>
+
 
         <div className="h-20 lg:h-35"></div>
         {/* Convener Section */}

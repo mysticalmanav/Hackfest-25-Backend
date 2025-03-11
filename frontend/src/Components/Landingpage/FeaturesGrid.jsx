@@ -12,7 +12,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => {
       transition={{ duration: 0.5, delay: delay * 0.1 }}
       whileHover={{ 
         scale: 1.03,
-        boxShadow: "0 10px 30px -15px rgba(255, 87, 51, 0.3)" 
+        boxShadow: "0 10px 30px -15px rgba(255, 87, 51, 0.1)" 
       }}
     >
       <motion.div
