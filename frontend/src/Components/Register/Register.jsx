@@ -13,6 +13,7 @@ import {
   Mail,
 } from "lucide-react";
 import Navbar from "../Navbar/Navbar.jsx";
+import {toast, Toaster} from 'react-hot-toast';
 
 const TeamRegistrationForm = () => {
   // Form state
@@ -40,6 +41,7 @@ const TeamRegistrationForm = () => {
     const calculatedProgress =
       currentStep === 1
         ? teamData.teamName &&
+        teamData.email &&
           teamData.leaderName &&
           teamData.leaderCollege &&
           teamData.leaderYear &&
@@ -48,7 +50,7 @@ const TeamRegistrationForm = () => {
           : 0
         : 25 +
           (teamMembers.filter(
-            (member) => member.name && member.college && member.year
+            (member) => member.name && member.college && member.year && member.email
           ).length /
             teamData.memberCount) *
             75;
@@ -63,7 +65,9 @@ const TeamRegistrationForm = () => {
         const newMembers = [...prev];
         // Adjust array length to match memberCount - 1 (excluding leader)
         while (newMembers.length < teamData.memberCount - 1) {
-          newMembers.push({ name: "", college: "", year: "" });
+          newMembers.push({ name: "", college: "", year: "", 
+          email: ""
+           });
         }
         return newMembers.slice(0, teamData.memberCount - 1);
       });
@@ -97,25 +101,90 @@ const TeamRegistrationForm = () => {
     setCurrentStep(2);
   };
 
+  const uploadToCloudinary = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "hackfest2k25"); // Replace with your actual preset
+
+    try {
+        const response = await fetch(`https://api.cloudinary.com/v1_1/dwqgih2ka/upload`, {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) throw new Error("Failed to upload");
+
+        const data = await response.json();
+        return data.secure_url; // This is the uploaded file's URL
+    } catch (error) {
+        console.error("Cloudinary Upload Error:", error);
+        throw error;
+    }
+};
+
   // Submit final form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setRegistrationComplete(true);
-    }, 2000);
-
-    // In a real app, you would submit form data to your backend here
-    const formData = {
-      team: teamData,
-      members: [...teamMembers],
+  
+    try {
+      const requestData = {
+        teamName: teamData.teamName,
+        leaderName: teamData.leaderName,
+        email: teamData.email,
+        leaderCollege: teamData.leaderCollege,
+        leaderYear: teamData.leaderYear,
+        memberCount: teamData.memberCount,
+        members: teamMembers,
     };
 
-    console.log("Form submitted:", formData);
+    if(!teamData.idProof){ 
+      toast.error("Please upload ID proof");
+      throw new Error("Please upload ID proof");}
+
+    // Upload ID proof to Cloudinary
+    const idProofUrl = await uploadToCloudinary(teamData.idProof);
+    requestData.idProof = idProofUrl;
+
+    console.log("Request Data:", requestData);
+
+    // Send requestData to backend
+    const response = await fetch(`${import.meta.env.VITE_backendUrl}/api/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+    });
+
+    let data;
+  
+    try {
+      data = await response.json();
+    } catch (jsonError) {
+      toast.error("Unexpected server response. Please try again.");
+      throw new Error("Unexpected server response. Please try again.");
+    }
+    if (!response.ok) {
+      if (response.status === 400 && data.message === "Team already registered with this email!") {
+        toast.error("This email is already registered. Try using a different email.");
+      } else {
+        toast.error(data.message || "Something went wrong. Please try again.");
+      }
+      throw new Error(data.message || "Something went wrong");
+    }
+
+      console.log("Team registered successfully:", data);
+      setProgress(100);
+      setRegistrationComplete(true);
+    } catch (error) {
+      console.error("Error submitting form:", error.message);
+      toast.error(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+  
 
   // Animation variants
   const containerVariants = {
@@ -161,6 +230,7 @@ const TeamRegistrationForm = () => {
     <div className="min-h-screen bg-zinc-900 text-cream-100">
     <Navbar />
     <div className="h-10 mb-5"></div>
+    <Toaster />
     <div className="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       {/* Progress Bar */}
       <div className="mb-10">
@@ -458,6 +528,21 @@ const TeamRegistrationForm = () => {
                             required
                             className="w-full px-4 py-2 mt-1 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300"
                             placeholder="Full name"
+                          />
+                        </label>
+                      </div>
+                      <div>
+                        <label className="block text-gray-300 mb-2 text-sm font-medium">
+                          Email
+                          <input
+                            type="email"
+                            value={member.email}
+                            onChange={(e) =>
+                              handleMemberChange(index, "email", e.target.value)
+                            }
+                            required
+                            className="w-full px-4 py-2 mt-1 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300"
+                            placeholder="Email ID of member"
                           />
                         </label>
                       </div>

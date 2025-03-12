@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 import Email from "../models/EmailModel.js";
+import cloudinary from "cloudinary";
+import Team from "../models/TeamModel.js";
 
 
 const transporter = nodemailer.createTransport({
@@ -154,5 +156,53 @@ export const sendingmessagetoemail = async (req, res) => {
       message: "Internal Server Error",
       error: error.message,
     });
+  }
+};
+
+
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export const saveDetails = async (req, res) => {
+  
+  try {
+    const { teamName, leaderName, email, leaderCollege, leaderYear, memberCount, members } = req.body;
+    
+    // Check if team with same email already exists
+    const existingTeam = await Team.findOne({ email });
+    if (existingTeam) return res.status(400).json({ message: "Team already registered with this email!" });
+
+    console.log(members)
+    const {idProof} = req.body;
+    console.log(idProof);
+    
+    // Parse members JSON
+    // Ensure members is an array
+const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
+
+    console.log(teamMembers);
+    const newTeam = new Team({
+      teamName,
+      leaderName,
+      email,
+      leaderCollege,
+      leaderYear,
+      memberCount,
+      members: teamMembers,
+      idProofUrl: idProof,
+    });
+
+    console.log(newTeam);
+
+    await newTeam.save();
+    res.status(201).json({ message: "Team registered successfully!" });
+  } catch (error) {
+    console.log("Error in controller", error.message);
+    res.status(500).json({ message: error.message });
   }
 };

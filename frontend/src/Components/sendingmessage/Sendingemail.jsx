@@ -11,6 +11,7 @@ function HackfestEmailPage() {
   const [loading, setLoading] = useState(false);
 
   const handleSendEmails = async () => {
+    console.log(process.env.BACKEND_URL);
     if (!email || !message) {
       toast.info("Please provide both email and message.");
       return;
@@ -21,7 +22,7 @@ function HackfestEmailPage() {
 
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/api/sendingmessage`,
+        `${import.meta.env.VITE_backendUrl}/api/sendingmessage`,
         {
           email,
           message,
