@@ -56,6 +56,10 @@ const TeamRegistrationForm = () => {
             75;
 
     setProgress(calculatedProgress);
+
+    if(registrationComplete){
+      setProgress(100);
+    }
   }, [currentStep, teamData, teamMembers]);
 
   // Initialize team members array when member count changes
@@ -273,8 +277,7 @@ const TeamRegistrationForm = () => {
             Registration Complete!
           </h2>
           <p className="text-gray-400 mb-6">
-            Your team has been successfully registered for HackFest 2025. We'll
-            be in touch with further details soon.
+            Your team has been successfully registered for HackFest 2025. The team leader will receive an email with further instructions. Thank you for registering!
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -466,6 +469,7 @@ const TeamRegistrationForm = () => {
                     required
                     className="w-full px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300 appearance-none"
                   >
+                    <option value="1">1 Member</option>
                     <option value="2">2 Members</option>
                     <option value="3">3 Members</option>
                     <option value="4">4 Members</option>
@@ -499,10 +503,11 @@ const TeamRegistrationForm = () => {
             >
               <motion.div variants={itemVariants} className="mb-6 text-center">
                 <h2 className="text-2xl font-bold text-gray-100 mb-2">
-                  Team Member Details
+                  {teamData.memberCount === "1" ? "Confirm Registration" : "Team Member Details"}
                 </h2>
                 <p className="text-gray-400">
-                  Please provide information about each team member
+                  {teamData.memberCount ==="1" ? "Click on complete registration to continue" : "Please provide information about each team member"}
+                  
                 </p>
               </motion.div>
 

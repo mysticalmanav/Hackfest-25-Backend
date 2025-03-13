@@ -134,6 +134,16 @@ const Navbar = () => {
               About
             </a>
             <a
+              href="/login"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
+              onClick={toggleMenu}
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+              }}
+            >
+              Login
+            </a>
+            <a
               href="/Team"
               className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
               onClick={toggleMenu}
@@ -142,6 +152,16 @@ const Navbar = () => {
               }}
             >
               Team
+            </a>
+            <a
+              href="/contact"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
+              onClick={toggleMenu}
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+              }}
+            >
+              Contact Us
             </a>
             {/* <a
               href="/comingsoon"

@@ -18,6 +18,7 @@ const TeamSchema = new mongoose.Schema({
   idProofUrl: { type: String, required: true },
   uniqueId: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  status: { type: String, required: true, default: 'pending' },
 }, { timestamps: true });
 
 const Team = mongoose.model('Team', TeamSchema);
