@@ -32,6 +32,16 @@ const Navbar = () => {
           >
             About
           </a>
+        
+          <a
+            href="/login"
+            className="text-orange-100 hover:text-orange-300 transition-colors font-bold  text-2xl"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+            }}
+          >
+            Login
+          </a>
           <a
             href="/Team"
             className="text-orange-100 hover:text-orange-300 transition-colors font-bold text-2xl"

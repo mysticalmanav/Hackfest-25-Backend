@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import Email from "../models/EmailModel.js";
 import cloudinary from "cloudinary";
 import Team from "../models/TeamModel.js";
+import crypto from "crypto";
 
 
 const transporter = nodemailer.createTransport({
@@ -161,12 +162,72 @@ export const sendingmessagetoemail = async (req, res) => {
 
 
 
+export const sendEmailAfterRegistration = async (email, uniqueId, password) => {
+  try {
+    const user = await Team.findOne ({ email });
+
+    if (!user) {
+      throw new Error("Email is not registered");
+    }
+
+    console.log("Sending email...");
+    const mailOptions = {
+      from: process.env.user,
+      to: user.email,
+      subject: "Welcome to HackFest'25!",
+      html: `<h2>Dear Participant,</h2>
+
+<p>Greetings from HackFest, IIT (ISM)
+Dhanbad!</p>
+
+<p>We are delighted to confirm your registration for HackFest, a premier 36-hour hackathon organized by NVCTI, IIT (ISM) Dhanbad. This event is designed to foster innovation, collaboration, and problem-solving skills among aspiring developers like you.</p>
+
+<p>Here are your login credentials:</p>
+<p>Unique ID: ${uniqueId}</p>
+<p>Password: ${password}</p>
+
+<p>Kindly keep these details safe and secure. You will need them to access the event portal and participate in the hackathon.</p>
+
+<p>Get ready to ideate, innovate, and create impactful solutions. If you have any queries, please feel free to reach out to us.</p>
+
+<br>
+
+<strong>Best regards,</strong><br>
+<em>HackFest Team</em><br>
+<em>NVCTI, IIT (ISM) Dhanbad</em>
+`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    console.log("Email sent successfully");
+  } catch (error) {
+    console.log("Error:", error);
+    throw new Error("Failed to send email");
+  }
+}
+
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+
+const generateUniqueId = async () => {
+  let uniqueId;
+  let existingTeam;
+
+  do {
+    uniqueId = crypto.randomBytes(3).toString("hex").toUpperCase(); // Generates a 6-character ID
+    existingTeam = await Team.findOne({ uniqueId });
+  } while (existingTeam); // Keep generating until we find a unique one
+
+  return uniqueId;
+};
+
 
 export const saveDetails = async (req, res) => {
   
@@ -185,6 +246,13 @@ export const saveDetails = async (req, res) => {
     // Ensure members is an array
 const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
 
+  const uniqueId = await generateUniqueId();
+
+    // Generate a random secure password (8-character hex string)
+    const password = crypto.randomBytes(4).toString("hex").toUpperCase();
+    console.log("Password generated:", password);
+    console.log("Unique ID generated:", uniqueId);
+
     console.log(teamMembers);
     const newTeam = new Team({
       teamName,
@@ -195,14 +263,45 @@ const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
       memberCount,
       members: teamMembers,
       idProofUrl: idProof,
+      uniqueId,
+      password
     });
 
     console.log(newTeam);
 
+    // Send email after registration
+
     await newTeam.save();
+    await sendEmailAfterRegistration(email, uniqueId, password);
+
+    // Save team details
     res.status(201).json({ message: "Team registered successfully!" });
   } catch (error) {
     console.log("Error in controller", error.message);
     res.status(500).json({ message: error.message });
   }
 };
+
+
+export const getTeamDetails = async (req, res) => {
+
+  try {
+    const { uniqueId, password } = req.body;
+    
+    const team = await Team.findOne({ uniqueId, password });
+
+    if (!team) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    return res.status(200).json({ success: true, team });
+  }
+  catch (error) {
+    console.log("Error in controller", error.message);
+    res.status(500).json({ message: error.message });
+  }
+}
+
+
+
+

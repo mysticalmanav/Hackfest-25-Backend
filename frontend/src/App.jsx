@@ -8,6 +8,9 @@ import AboutUsPage from "./Components/AboutUs/Aboutuspage.jsx";
 import CoreTeamPage from "./Components/Team/CoreTeamPage.jsx";
 import ContactUsPage from "./Components/ContactUs/ContactUs.jsx";
 import TeamRegistrationForm from "./Components/Register/Register.jsx";
+import Login from "./Components/Login/Login.jsx";
+import Dashboard from "./Components/Dashboard/Dashboard.jsx";
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -23,6 +26,8 @@ function App() {
           <Route path="/Team" element={<CoreTeamPage />} />
           <Route path="/Contact" element={<ContactUsPage />} />
           <Route path="/register" element={<TeamRegistrationForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
           
         </Routes>

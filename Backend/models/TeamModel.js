@@ -16,6 +16,8 @@ const TeamSchema = new mongoose.Schema({
   memberCount: { type: Number, required: true },
   members: { type: [MemberSchema], required: true },
   idProofUrl: { type: String, required: true },
+  uniqueId: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 }, { timestamps: true });
 
 const Team = mongoose.model('Team', TeamSchema);

@@ -169,7 +169,7 @@ const TeamRegistrationForm = () => {
       if (response.status === 400 && data.message === "Team already registered with this email!") {
         toast.error("This email is already registered. Try using a different email.");
       } else {
-        toast.error(data.message || "Something went wrong. Please try again.");
+        toast.error("This email is already registered. Try using a different email.");
       }
       throw new Error(data.message || "Something went wrong");
     }
@@ -177,6 +177,8 @@ const TeamRegistrationForm = () => {
       console.log("Team registered successfully:", data);
       setProgress(100);
       setRegistrationComplete(true);
+
+
     } catch (error) {
       console.error("Error submitting form:", error.message);
       toast.error(error.message);
@@ -464,6 +466,7 @@ const TeamRegistrationForm = () => {
                     required
                     className="w-full px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300 appearance-none"
                   >
+                    <option value="2">2 Members</option>
                     <option value="3">3 Members</option>
                     <option value="4">4 Members</option>
                     <option value="5">5 Members</option>
