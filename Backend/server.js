@@ -15,9 +15,10 @@ app.use(cors());
 app.use("/api", routes);
 
 connectToMongoDB()
-.then(() => {
+  .then(() => {
     app.listen(port, () => {
-        console.log(`Server running on ${port}`)
+      console.log(process.env.user);
+      console.log(`Server running on ${port}`);
     });
-})
-.catch((err) => console.log(`${err} did not connect`));
+  })
+  .catch((err) => console.log(`${err} did not connect`));
