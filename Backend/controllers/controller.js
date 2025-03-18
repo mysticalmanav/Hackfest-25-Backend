@@ -46,7 +46,7 @@ export const joinWaitList = async (req, res) => {
             <p>We're thrilled to have you on board! Stay tuned for exciting updates and important announcements.</p>
       
             <p style="margin-top: 20px; text-align: center;">
-              <a href="https://yourwebsite.com" target="_blank" 
+              <a href="http://www.hackfest.in" target="_blank" 
                 style="display: inline-block; background-color: #ff6200; color: #fff; padding: 12px 20px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
                 🚀 Register/Login on Website
               </a>
