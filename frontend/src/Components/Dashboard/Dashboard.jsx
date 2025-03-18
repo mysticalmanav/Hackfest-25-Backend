@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, User, School, Calendar, Trophy, LogOut, Mail, X } from 'lucide-react';
+import { Users, User, School, Calendar, Trophy, LogOut, Mail, X, ExternalLink } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Dashboard = () => {
@@ -31,6 +31,10 @@ const Dashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem('teamData');
     navigate('/login');
+  };
+
+  const handlePayment = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSelgP1FoqZzMMhirj7VIwppKIrUXYWz_XptQWgwLKIUq_CHKA/viewform?usp=header', '_blank');
   };
 
   if (!teamData) {
@@ -109,9 +113,23 @@ const Dashboard = () => {
               <User className="w-8 h-8 text-orange-100" />
               <div>
                 <p className="text-sm text-gray-400">Registration Status</p>
-                <p className={`text-lg font-semibold
-                  ${teamData.status === 'pending' ? 'text-red-500' : 'text-green-400'}
-                  `}>{teamData.status}</p>
+                <div className="flex items-center gap-3">
+                  <p className={`text-lg font-semibold
+                    ${teamData.status === 'pending' ? 'text-red-500' : 'text-green-400'}
+                  `}>
+                    {teamData.status}
+                  </p>
+                  {teamData.status === 'pending' && (
+                    <button
+                      onClick={handlePayment}
+                      className="group relative flex items-center gap-1 px-3 py-1 text-sm font-medium text-orange-100 bg-zinc-700 rounded-full hover:bg-zinc-600 transition-all duration-300 hover:pr-4"
+                    >
+                      <span className="whitespace-nowrap">Complete Payment</span>
+                      <ExternalLink className="w-4 h-4" />
+                      <span className="absolute inset-0 rounded-full border-2 border-orange-100/20 group-hover:border-orange-100/40 transition-colors"></span>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-4">
