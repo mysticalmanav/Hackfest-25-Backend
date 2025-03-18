@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const MemberSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -21,5 +21,5 @@ const TeamSchema = new mongoose.Schema({
   status: { type: String, required: true, default: 'pending' },
 }, { timestamps: true });
 
-const Team = mongoose.model('Team', TeamSchema);
+const Team = mongoose.model("Team", TeamSchema);
 export default Team;

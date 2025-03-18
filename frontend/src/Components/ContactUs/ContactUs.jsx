@@ -93,7 +93,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <p className="text-sm text-zinc-400">Email</p>
-                    <p className="text-lg">contact@hackfest25.com</p>
+                    <p className="text-lg">support@hackfest.in</p>
                   </div>
                 </motion.div>
 
