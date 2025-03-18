@@ -81,7 +81,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <p className="text-sm text-zinc-400">Contact</p>
-                    <p className="text-lg">Manav Sharma </p>
+                    <p className="text-lg">Shreyansh Shandilya</p>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -106,7 +106,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <p className="text-sm text-zinc-400">Phone</p>
-                    <p className="text-lg">+91 8114439297</p>
+                    <p className="text-lg">+91 98765 43210</p>
                   </div>
                 </motion.div>
               </div>

@@ -52,9 +52,7 @@ function LandingStatic() {
       {/* Navigation */}
       <Navbar />
       <div className="h-10 mb-5"></div>
-      <div className="scale-75 md:mt-0 mt-16 md:absolute top-32 left-16 z-0">
-
-      </div>
+      <div className="scale-75 md:mt-0 mt-16 md:absolute top-32 left-16 z-0"></div>
 
       <main className="container mx-auto px-4 pt-20 text-center">
         <div className="space-y-6">
@@ -81,13 +79,15 @@ function LandingStatic() {
           </h1>
 
           <div className="mt-12 mb-12 ">
-          <DualRegisterButtons 
-            onRegisterHere={handleRegister} 
-            unstopUrl="https://unstop.com/hackathons/hackfest-25-indian-institute-of-technology-indian-school-of-mines-iit-ism-dhanbad-1413387" 
-          />
-        </div>
+            <DualRegisterButtons
+              onRegisterHere={handleRegister}
+              unstopUrl="https://unstop.com/hackathons/hackfest-25-indian-institute-of-technology-indian-school-of-mines-iit-ism-dhanbad-1413387"
+            />
+          </div>
 
-
+          <p className="max-w-2xl mx-auto font-bold text-[#e5e7eb] text-base md:text-lg px-4">
+            ( IIT (ISM) students not need to register )
+          </p>
           <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">
             The countdown has begun for Hackfest 2025—where bold ideas meet
             real-world solutions. It's more than just a hackathon; it's the
@@ -132,8 +132,8 @@ function LandingStatic() {
           />
         </div>
 
-    {/* <PrizePoolSection /> */}
-        
+        {/* <PrizePoolSection /> */}
+
         <FeaturesGrid />
       </main>
 
