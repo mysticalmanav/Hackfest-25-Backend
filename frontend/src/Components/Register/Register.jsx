@@ -512,7 +512,7 @@ const TeamRegistrationForm = () => {
                       <span className="ml-1">
                         Referral Id (phone number of campus ambassador)
                       </span>
-                      <span className="text-red-600">*</span>
+                   
                     </div>
                     <input
                       type="text"
