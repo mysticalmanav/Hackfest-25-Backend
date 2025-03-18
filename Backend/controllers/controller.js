@@ -4,26 +4,21 @@ import cloudinary from "cloudinary";
 import Team from "../models/TeamModel.js";
 import crypto from "crypto";
 
-
 const transporter = nodemailer.createTransport({
   service: "gmail",
   secure: true,
   port: 465,
   auth: {
-    user: 'hackfest2k25@gmail.com',
-    pass: 'tycspsjtiheloczd',
+    user: "hackfest2k25@gmail.com",
+    pass: "tycspsjtiheloczd",
   },
 });
 
-
-
 export const joinWaitList = async (req, res) => {
-console.log(process.env.user);
+  console.log(process.env.user);
   try {
     const { email } = req.body;
     const user = await Email.findOne({ email });
-
-    
 
     if (user) {
       return res.status(400).json({
@@ -42,14 +37,28 @@ console.log(process.env.user);
       const mailOptions = {
         from: process.env.user,
         to: newUser.email,
-        subject: "Welcome to HackFest'25!",
-        html: `<h2>Hi,</h2>
-                      <p>Thank you for registering! Get ready to innovate and collaborate.</p>
-                      <p>We’re excited to see your ideas come to life. Stay tuned for further updates!</p>
-
-                       <br>
-                       <strong>Best regards,</strong><br>
-                       <em>HackFest Team</em>`,
+        subject: "Welcome to HackFest'25! 🚀",
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <h2 style="color: #ff6200;">Hi ${newUser.name},</h2>
+            <p>🎉 Thank you for registering for <strong>HackFest'25</strong>! Get ready to innovate, collaborate, and compete with the brightest minds.</p>
+            
+            <p>We're thrilled to have you on board! Stay tuned for exciting updates and important announcements.</p>
+      
+            <p style="margin-top: 20px; text-align: center;">
+              <a href="https://yourwebsite.com" target="_blank" 
+                style="display: inline-block; background-color: #ff6200; color: #fff; padding: 12px 20px; font-size: 16px; font-weight: bold; text-decoration: none; border-radius: 6px;">
+                🚀 Register/Login on Website
+              </a>
+            </p>
+      
+            <br>
+            <p>For any queries, feel free to reach out. Let’s make this an unforgettable experience!</p>
+            
+            <strong>Best regards,</strong><br>
+            <em>HackFest Team</em>
+          </div>
+        `,
       };
 
       try {
@@ -160,11 +169,9 @@ export const sendingmessagetoemail = async (req, res) => {
   }
 };
 
-
-
 export const sendEmailAfterRegistration = async (email, uniqueId, password) => {
   try {
-    const user = await Team.findOne ({ email });
+    const user = await Team.findOne({ email });
 
     if (!user) {
       throw new Error("Email is not registered");
@@ -205,16 +212,13 @@ Dhanbad!</p>
     console.log("Error:", error);
     throw new Error("Failed to send email");
   }
-}
-
-
+};
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
 
 const generateUniqueId = async () => {
   let uniqueId;
@@ -228,25 +232,34 @@ const generateUniqueId = async () => {
   return uniqueId;
 };
 
-
 export const saveDetails = async (req, res) => {
-  
   try {
-    const { teamName, leaderName, email, leaderCollege, leaderYear, memberCount, members } = req.body;
-    
+    const {
+      teamName,
+      leaderName,
+      email,
+      leaderCollege,
+      leaderYear,
+      memberCount,
+      members,
+    } = req.body;
+
     // Check if team with same email already exists
     const existingTeam = await Team.findOne({ email });
-    if (existingTeam) return res.status(400).json({ message: "Team already registered with this email!" });
+    if (existingTeam)
+      return res
+        .status(400)
+        .json({ message: "Team already registered with this email!" });
 
-    console.log(members)
-    const {idProof} = req.body;
+    console.log(members);
+    const { idProof } = req.body;
     console.log(idProof);
-    
+
     // Parse members JSON
     // Ensure members is an array
-const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
+    const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
 
-  const uniqueId = await generateUniqueId();
+    const uniqueId = await generateUniqueId();
 
     // Generate a random secure password (8-character hex string)
     const password = crypto.randomBytes(4).toString("hex").toUpperCase();
@@ -264,7 +277,7 @@ const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
       members: teamMembers,
       idProofUrl: idProof,
       uniqueId,
-      password
+      password,
     });
 
     console.log(newTeam);
@@ -282,12 +295,10 @@ const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
   }
 };
 
-
 export const getTeamDetails = async (req, res) => {
-
   try {
     const { uniqueId, password } = req.body;
-    
+
     const team = await Team.findOne({ uniqueId, password });
 
     if (!team) {
@@ -295,13 +306,8 @@ export const getTeamDetails = async (req, res) => {
     }
 
     return res.status(200).json({ success: true, team });
-  }
-  catch (error) {
+  } catch (error) {
     console.log("Error in controller", error.message);
     res.status(500).json({ message: error.message });
   }
-}
-
-
-
-
+};
