@@ -164,13 +164,16 @@ const TeamRegistrationForm = () => {
       console.log("Request Data:", requestData);
 
       // Send requestData to backend
-      const response = await fetch(`http://localhost:8000/api/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        `https://hackfest-25-backend-1.onrender.com/api/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
       console.log(response);
       let data;
 
