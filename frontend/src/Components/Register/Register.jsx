@@ -24,6 +24,7 @@ const TeamRegistrationForm = () => {
   const [registrationComplete, setRegistrationComplete] = useState(false);
 
   // Team info state
+  const [referral,setRefera] = useState('');
   const [teamData, setTeamData] = useState({
     teamName: "",
     leaderName: "",
@@ -32,6 +33,7 @@ const TeamRegistrationForm = () => {
     leaderYear: "",
     idProof: null,
     memberCount: 3,
+    referral: {referral},
   });
 
   // Team members state
@@ -124,6 +126,7 @@ const TeamRegistrationForm = () => {
       const data = await response.json();
       return data.secure_url; // This is the uploaded file's URL
     } catch (error) {
+      console.log(error)
       console.error("Cloudinary Upload Error:", error);
       throw error;
     }
@@ -133,8 +136,11 @@ const TeamRegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+    console.log(teamData)
+    console.log(referral);
     try {
+      toast.success("Submitting form. Please wait...");
+      // Prepare request data
       const requestData = {
         teamName: teamData.teamName,
         leaderName: teamData.leaderName,
@@ -143,6 +149,7 @@ const TeamRegistrationForm = () => {
         leaderYear: teamData.leaderYear,
         memberCount: teamData.memberCount,
         members: teamMembers,
+        referral:referral
       };
 
       if (!teamData.idProof) {
@@ -167,12 +174,13 @@ const TeamRegistrationForm = () => {
           body: JSON.stringify(requestData),
         }
       );
-
+      console.log(response);
       let data;
 
       try {
         data = await response.json();
       } catch (jsonError) {
+        console.log(jsonError);
         toast.error("Unexpected server response. Please try again.");
         throw new Error("Unexpected server response. Please try again.");
       }
@@ -196,6 +204,7 @@ const TeamRegistrationForm = () => {
       setProgress(100);
       setRegistrationComplete(true);
     } catch (error) {
+      console.log(error)
       console.error("Error submitting form:", error.message);
       toast.error(error.message);
     } finally {
@@ -512,10 +521,12 @@ const TeamRegistrationForm = () => {
                       inputMode="numeric"
                       className="w-full px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300 appearance-none"
                       onChange={(e) => {
+                       setRefera(e.target.value);
                         e.target.value = e.target.value
                           .replace(/\D/g, "")
                           .slice(0, 10);
                       }}
+                      value={referral}
                     />
                   </label>
                 </motion.div>

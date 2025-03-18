@@ -242,9 +242,11 @@ export const saveDetails = async (req, res) => {
       leaderYear,
       memberCount,
       members,
+      referral,
     } = req.body;
 
-    // Check if team with same email already exists
+    console.log("seoingwsgn");
+
     const existingTeam = await Team.findOne({ email });
     if (existingTeam)
       return res
@@ -278,6 +280,7 @@ export const saveDetails = async (req, res) => {
       idProofUrl: idProof,
       uniqueId,
       password,
+      referral,
     });
 
     console.log(newTeam);
@@ -285,6 +288,7 @@ export const saveDetails = async (req, res) => {
     // Send email after registration
 
     await newTeam.save();
+    console.log(newTeam);
     await sendEmailAfterRegistration(email, uniqueId, password);
 
     // Save team details
