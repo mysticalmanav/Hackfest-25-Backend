@@ -238,13 +238,20 @@ export const saveDetails = async (req, res) => {
     const existingTeam = await Team.findOne({ email });
     if (existingTeam) return res.status(400).json({ message: "Team already registered with this email!" });
 
-    console.log(members)
+
     const {idProof} = req.body;
     console.log(idProof);
     
     // Parse members JSON
     // Ensure members is an array
 const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
+
+teamMembers.push({
+  name: leaderName,
+  college: leaderCollege,
+  year: leaderYear,
+  email,
+})
 
   const uniqueId = await generateUniqueId();
 

@@ -4,7 +4,7 @@ const MemberSchema = new mongoose.Schema({
   name: { type: String, required: true },
   college: { type: String, required: true },
   year: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
 });
 
 const TeamSchema = new mongoose.Schema({
@@ -14,7 +14,7 @@ const TeamSchema = new mongoose.Schema({
   leaderCollege: { type: String, required: true },
   leaderYear: { type: String, required: true },
   memberCount: { type: Number, required: true },
-  members: { type: [MemberSchema], required: true },
+  members: { type: [MemberSchema]},
   idProofUrl: { type: String, required: true },
   uniqueId: { type: String, required: true, unique: true },
   password: { type: String, required: true },
