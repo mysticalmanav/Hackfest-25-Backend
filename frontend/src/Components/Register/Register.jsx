@@ -165,7 +165,7 @@ const TeamRegistrationForm = () => {
 
       // Send requestData to backend
       const response = await fetch(
-        `https://hackfest-25-backend-1.onrender.com/api/register`,
+        `${import.meta.env.VITE_backendUrl}/api/register`,
         {
           method: "POST",
           headers: {
