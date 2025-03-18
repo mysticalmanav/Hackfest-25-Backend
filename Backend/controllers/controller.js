@@ -261,6 +261,13 @@ export const saveDetails = async (req, res) => {
     // Ensure members is an array
     const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
 
+    teamMembers.push({
+      name: leaderName,
+      college: leaderCollege,
+      year: leaderYear,
+      email,
+    });
+
     const uniqueId = await generateUniqueId();
 
     // Generate a random secure password (8-character hex string)

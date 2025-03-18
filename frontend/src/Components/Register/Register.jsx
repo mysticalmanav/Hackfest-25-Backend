@@ -24,7 +24,7 @@ const TeamRegistrationForm = () => {
   const [registrationComplete, setRegistrationComplete] = useState(false);
 
   // Team info state
-  const [referral,setRefera] = useState('');
+  const [referral, setRefera] = useState("");
   const [teamData, setTeamData] = useState({
     teamName: "",
     leaderName: "",
@@ -33,7 +33,7 @@ const TeamRegistrationForm = () => {
     leaderYear: "",
     idProof: null,
     memberCount: 3,
-    referral: {referral},
+    referral: { referral },
   });
 
   // Team members state
@@ -126,7 +126,7 @@ const TeamRegistrationForm = () => {
       const data = await response.json();
       return data.secure_url; // This is the uploaded file's URL
     } catch (error) {
-      console.log(error)
+      console.log(error);
       console.error("Cloudinary Upload Error:", error);
       throw error;
     }
@@ -136,7 +136,7 @@ const TeamRegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log(teamData)
+    console.log(teamData);
     console.log(referral);
     try {
       toast.success("Submitting form. Please wait...");
@@ -149,7 +149,7 @@ const TeamRegistrationForm = () => {
         leaderYear: teamData.leaderYear,
         memberCount: teamData.memberCount,
         members: teamMembers,
-        referral:referral
+        referral: referral,
       };
 
       if (!teamData.idProof) {
@@ -164,16 +164,13 @@ const TeamRegistrationForm = () => {
       console.log("Request Data:", requestData);
 
       // Send requestData to backend
-      const response = await fetch(
-        `https://hackfest-25-backend-1.onrender.com/api/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+      const response = await fetch(`http://localhost:8000/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
       console.log(response);
       let data;
 
@@ -185,6 +182,7 @@ const TeamRegistrationForm = () => {
         throw new Error("Unexpected server response. Please try again.");
       }
       if (!response.ok) {
+        console.log(response);
         if (
           response.status === 400 &&
           data.message === "Team already registered with this email!"
@@ -204,7 +202,7 @@ const TeamRegistrationForm = () => {
       setProgress(100);
       setRegistrationComplete(true);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       console.error("Error submitting form:", error.message);
       toast.error(error.message);
     } finally {
@@ -512,7 +510,6 @@ const TeamRegistrationForm = () => {
                       <span className="ml-1">
                         Referral Id (phone number of campus ambassador)
                       </span>
-                   
                     </div>
                     <input
                       type="text"
@@ -521,7 +518,7 @@ const TeamRegistrationForm = () => {
                       inputMode="numeric"
                       className="w-full px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg focus:outline-none focus:border-orange-100 text-gray-300 appearance-none"
                       onChange={(e) => {
-                       setRefera(e.target.value);
+                        setRefera(e.target.value);
                         e.target.value = e.target.value
                           .replace(/\D/g, "")
                           .slice(0, 10);
