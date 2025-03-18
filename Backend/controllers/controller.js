@@ -253,13 +253,20 @@ export const saveDetails = async (req, res) => {
         .status(400)
         .json({ message: "Team already registered with this email!" });
 
-    console.log(members);
-    const { idProof } = req.body;
+    console.log(members)
+    const {idProof} = req.body;
     console.log(idProof);
 
     // Parse members JSON
     // Ensure members is an array
-    const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
+const teamMembers = Array.isArray(members) ? members : JSON.parse(members);
+
+teamMembers.push({
+  name: leaderName,
+  college: leaderCollege,
+  year: leaderYear,
+  email,
+})
 
     teamMembers.push({
       name: leaderName,
