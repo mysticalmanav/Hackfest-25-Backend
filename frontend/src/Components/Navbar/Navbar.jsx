@@ -32,7 +32,15 @@ const Navbar = () => {
           >
             About
           </a>
-        
+          <a
+            href="/problemstatement"
+            className="text-orange-100 hover:text-orange-300 transition-colors font-bold  text-2xl"
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+            }}
+          >
+            Problem Statement
+          </a>
           <a
             href="/login"
             className="text-orange-100 hover:text-orange-300 transition-colors font-bold  text-2xl"
@@ -132,6 +140,16 @@ const Navbar = () => {
               }}
             >
               About
+            </a>
+            <a
+              href="/problemstatement"
+              className="text-gray-300 hover:text-green-400 transition-colors text-2xl font-medium"
+              onClick={toggleMenu}
+              style={{
+                fontFamily: "'Courier New', Courier, monospace",
+              }}
+            >
+              Problem Statement
             </a>
             <a
               href="/login"
