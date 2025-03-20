@@ -71,13 +71,13 @@ function Ps1() {
             <h2 className="text-2xl font-semibold text-orange-100 mb-4">Problem Statement</h2>
             <ul className="text-gray-400 list-disc pl-5">
               <li>
-                Design and implement an AI-driven solution for GoFloww's Atom Mail platform to enable smart email composition, response generation, and content refinement based on user prompts.<br /><br />
+                Design and implement an AI-driven solution for GoFloww's Atom Mail platform to enable smart email composition, response generation, and content refinement based on user prompts.
                 </li>
                 <li>
-                The solution should effectively analyze past email conversations to understand context, generate appropriate responses, and adapt to individual communication styles and preferences.<br /><br />
+                The solution should effectively analyze past email conversations to understand context, generate appropriate responses, and adapt to individual communication styles and preferences.
                 </li>
                 <li>
-                Key challenges to address include ensuring user privacy, delivering a seamless user experience, maintaining the accuracy of AI-generated content, and handling diverse email contexts (formal, informal, technical, etc.).<br /><br />
+                Key challenges to address include ensuring user privacy, delivering a seamless user experience, maintaining the accuracy of AI-generated content, and handling diverse email contexts (formal, informal, technical, etc.).
                 </li>
                 <li>
                     The ultimate objective is to significantly reduce the time spent on email management while maintaining or enhancing communication quality and user satisfaction.
