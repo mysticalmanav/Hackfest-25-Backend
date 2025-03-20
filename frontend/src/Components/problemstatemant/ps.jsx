@@ -11,7 +11,7 @@ const ProblemStatement = ({ companies }) => {
       name: "GoFloww ",
       logo: gofloww,
       docsLink: "/problemstatement/ps1",
-      description: "AI Email Challenge"
+      description: "Atom Mail Challenge"
     }
   ];
 
