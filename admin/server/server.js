@@ -14,7 +14,7 @@ app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("Server is running");
-});
+}); 
 app.use("/api", teamRoutes);
 
 connectToMongoDB()
