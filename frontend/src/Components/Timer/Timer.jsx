@@ -3,7 +3,7 @@ import { useSpring, animated } from '@react-spring/web';
 
 const CountdownTimerPage = () => {
   // Target date (you can set this dynamically)
-  const targetDate = new Date('2025-04-04T00:00:00'); 
+  const targetDate = new Date('2025-04-01T00:00:00'); 
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
