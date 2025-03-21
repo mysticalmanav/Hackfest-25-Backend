@@ -4,20 +4,56 @@ import { fetchTeams, updateTeamStatus } from '../api/teamApi';
 const TeamList = () => {
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [password, setPassword] = useState('');
+  const [isPasswordPromptOpen, setIsPasswordPromptOpen] = useState(!localStorage.getItem('password'));
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [actionType, setActionType] = useState(null); // 'verify' or 'unverify'
   const [teamIdToUpdate, setTeamIdToUpdate] = useState(null); // ID of the team to update
   const [teamNameToUpdate, setTeamNameToUpdate] = useState(null); // Name of the team to update
 
-  // Fetch teams on component mount
-  useEffect(() => {
-    const getTeams = async () => {
-      const teamsData = await fetchTeams();
-      setTeams(teamsData);
-    };
-    getTeams();
-  }, []);
+  // useEffect(() => {
+  //   const check = async () => {
+  //     if (localStorage.getItem('password')) {
+  //       setIsAuthenticated(true);
+  //       const teamsData = await fetchTeams();
+  //       if (teamsData.error) {
+  //         // If there's an error (like invalid password), clear stored password
+  //         localStorage.removeItem('password');
+  //         setIsAuthenticated(false);
+  //         setIsPasswordPromptOpen(true);
+  //       } else {
+  //         setTeams(teamsData);
+  //       }
+  //     }
+  //   };
+  //   getTeams();
+  // }, [isAuthenticated]);
+
+  const handlePasswordSubmit = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ password: password }),
+      });
+      if (response.ok) {
+        localStorage.setItem('password', password);
+        setIsAuthenticated(true);
+        setIsPasswordPromptOpen(false);
+        const data = await response.json();
+        setTeams(data.data);
+      } else {
+        alert('Invalid password. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error validating password. Please try again.');
+    }
+  };
 
   const handleVerify = async (id) => {
     const updatedTeam = await updateTeamStatus(id, 'verified');
@@ -104,6 +140,14 @@ const TeamList = () => {
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
     },
     teamName: {
+      fontSize: '18px',
+      color: '#333',
+      fontWeight: '500',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+    },
+    teamid: {
       fontSize: '18px',
       color: '#333',
       fontWeight: '500',
@@ -256,131 +300,155 @@ const TeamList = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Team Verification</h1>
-      <ul style={styles.teamList}>
-        {teams.map(team => (
-          <li
-            key={team._id}
-            style={{
-              ...styles.teamItem,
-              ...(selectedTeam?._id === team._id ? styles.teamItemHover : {}),
-            }}
-            onClick={() => handleTeamClick(team)}
-          >
-            <div style={styles.teamName}>
-              {team.teamName}
-              <span
-                style={{
-                  ...styles.statusBadge,
-                  ...(team.status === 'pending' ? styles.statusPending : styles.statusVerified),
-                }}
-              >
-                {team.status}
-              </span>
-            </div>
-            <div style={styles.buttonGroup}>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openConfirmationModal('verify', team._id, team.teamName);
-                }}
-                style={{
-                  ...styles.verifyButton,
-                  ...(team.status === 'verified' ? styles.verifyButtonVerified : {}),
-                }}
-                disabled={team.status === 'verified'}
-              >
-                {team.status === 'verified' ? 'Verified' : 'Verify'}
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openConfirmationModal('unverify', team._id, team.teamName);
-                }}
-                style={{
-                  ...styles.unverifyButton,
-                  ...(team.status === 'pending' ? styles.unverifyButtonDisabled : {}),
-                }}
-                disabled={team.status === 'pending'}
-              >
-                Unverify
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {/* Team Details Modal */}
-      {isModalOpen && selectedTeam && (
-        <div style={styles.modalOverlay} onClick={closeModal}>
-          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <h2>{selectedTeam.teamName} Details</h2>
-            <p><strong>Leader:</strong> {selectedTeam.leaderName}</p>
-            <p><strong>Email:</strong> {selectedTeam.email}</p>
-            <p><strong>College:</strong> {selectedTeam.leaderCollege}</p>
-            <p><strong>Year:</strong> {selectedTeam.leaderYear}</p>
-            <p><strong>ID Proof:</strong>{' '}
-              <a
-                href={selectedTeam.idProofUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={styles.idProofLink}
-              >
-                View ID Proof
-              </a>
-            </p>
-            <p><strong>Members:</strong></p>
-            <ul>
-              {selectedTeam.members.map((member, index) => (
-                <li key={index}>
-                  <strong>{member.name}</strong> ({member.college}, {member.year}) - {member.email}
-                </li>
-              ))}
-            </ul>
-            <button style={styles.modalCloseButton} onClick={closeModal}>
-              Close
+    <>
+      {isPasswordPromptOpen && (
+        <div style={styles.modalOverlay}>
+          <div style={styles.modalContent}>
+            <h2>Enter Admin Password</h2>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+            />
+            <button onClick={handlePasswordSubmit} style={styles.confirmButton}>
+              Submit
             </button>
           </div>
         </div>
       )}
 
-      {/* Confirmation Modal */}
-      {isConfirmationModalOpen && (
-        <div style={styles.modalOverlay} onClick={closeConfirmationModal}>
-          <div style={styles.confirmationModalContent} onClick={(e) => e.stopPropagation()}>
-            <p style={styles.confirmationText}>
-              Are you sure you want to{' '}
-              <span
-                style={
-                  actionType === 'verify'
-                    ? styles.highlightedText
-                    : styles.highlightedTextUnverify
-                }
+      {isAuthenticated && (
+        <div style={styles.container}>
+          <h1 style={styles.heading}>Team Verification</h1>
+          <ul style={styles.teamList}>
+            {teams.map(team => (
+              <li
+                key={team._id}
+                style={{
+                  ...styles.teamItem,
+                  ...(selectedTeam?._id === team._id ? styles.teamItemHover : {}),
+                }}
+                onClick={() => handleTeamClick(team)}
               >
-                {actionType}
-              </span>{' '}
-              the team{' '}
-              <strong>{teamNameToUpdate}</strong>?
-            </p>
-            <div style={styles.confirmationButtonGroup}>
-              <button
-                style={{ ...styles.confirmationButton, ...styles.confirmButton }}
-                onClick={confirmAction}
-              >
-                Confirm
-              </button>
-              <button
-                style={{ ...styles.confirmationButton, ...styles.cancelButton }}
-                onClick={closeConfirmationModal}
-              >
-                Cancel
-              </button>
+                <div style={styles.teamName}>
+                  {team.teamName}
+                  <span>  </span>
+                  {team.uniqueId}
+                  <span
+                    style={{
+                      ...styles.statusBadge,
+                      ...(team.status === 'pending' ? styles.statusPending : styles.statusVerified),
+                    }}
+                  >
+                    {team.status}
+                  </span>
+                </div>
+
+                <div style={styles.buttonGroup}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openConfirmationModal('verify', team._id, team.teamName);
+                    }}
+                    style={{
+                      ...styles.verifyButton,
+                      ...(team.status === 'verified' ? styles.verifyButtonVerified : {}),
+                    }}
+                    disabled={team.status === 'verified'}
+                  >
+                    {team.status === 'verified' ? 'Verified' : 'Verify'}
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openConfirmationModal('unverify', team._id, team.teamName);
+                    }}
+                    style={{
+                      ...styles.unverifyButton,
+                      ...(team.status === 'pending' ? styles.unverifyButtonDisabled : {}),
+                    }}
+                    disabled={team.status === 'pending'}
+                  >
+                    Unverify
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          {/* Team Details Modal */}
+          {isModalOpen && selectedTeam && (
+            <div style={styles.modalOverlay} onClick={closeModal}>
+              <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <h2>{selectedTeam.teamName} Details</h2>
+                <p><strong>Leader:</strong> {selectedTeam.leaderName}</p>
+                <p><strong>Email:</strong> {selectedTeam.email}</p>
+                <p><strong>College:</strong> {selectedTeam.leaderCollege}</p>
+                <p><strong>Year:</strong> {selectedTeam.leaderYear}</p>
+                <p><strong>ID Proof:</strong>{' '}
+                  <a
+                    href={selectedTeam.idProofUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={styles.idProofLink}
+                  >
+                    View ID Proof
+                  </a>
+                </p>
+                <p><strong>Members:</strong></p>
+                <ul>
+                  {selectedTeam.members.map((member, index) => (
+                    <li key={index}>
+                      <strong>{member.name}</strong> ({member.college}, {member.year}) - {member.email}
+                    </li>
+                  ))}
+                </ul>
+                <button style={styles.modalCloseButton} onClick={closeModal}>
+                  Close
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Confirmation Modal */}
+          {isConfirmationModalOpen && (
+            <div style={styles.modalOverlay} onClick={closeConfirmationModal}>
+              <div style={styles.confirmationModalContent} onClick={(e) => e.stopPropagation()}>
+                <p style={styles.confirmationText}>
+                  Are you sure you want to{' '}
+                  <span
+                    style={
+                      actionType === 'verify'
+                        ? styles.highlightedText
+                        : styles.highlightedTextUnverify
+                    }
+                  >
+                    {actionType}
+                  </span>{' '}
+                  the team{' '}
+                  <strong>{teamNameToUpdate}</strong>?
+                </p>
+                <div style={styles.confirmationButtonGroup}>
+                  <button
+                    style={{ ...styles.confirmationButton, ...styles.confirmButton }}
+                    onClick={confirmAction}
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    style={{ ...styles.confirmationButton, ...styles.cancelButton }}
+                    onClick={closeConfirmationModal}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

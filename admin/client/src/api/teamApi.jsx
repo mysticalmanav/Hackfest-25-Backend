@@ -1,19 +1,28 @@
 // src/api/teamApi.js
 export const fetchTeams = async () => {
   try {
-    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/teams`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch teams");
-    }
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/teams`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: localStorage.getItem("password") }),
+    });
+
+    
     const data = await response.json();
-    return data.data; // Return the list of teams
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to fetch teams");
+    }
+    
+    return data.data;
   } catch (error) {
     console.error("Error fetching teams:", error);
-    return [];
+    return { error: error.message };
   }
 };
 
-export const updateTeamStatus = async (id, status) => {
+export const updateTeamStatus = async (id, status, password) => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_BASE_URL}/api/teams/${id}/status`,
@@ -22,7 +31,7 @@ export const updateTeamStatus = async (id, status) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify({ status,  password: localStorage.getItem("password") }),
       }
     );
 
