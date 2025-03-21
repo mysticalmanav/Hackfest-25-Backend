@@ -13,23 +13,34 @@ const TeamList = () => {
   const [teamIdToUpdate, setTeamIdToUpdate] = useState(null); // ID of the team to update
   const [teamNameToUpdate, setTeamNameToUpdate] = useState(null); // Name of the team to update
 
-  // useEffect(() => {
-  //   const check = async () => {
-  //     if (localStorage.getItem('password')) {
-  //       setIsAuthenticated(true);
-  //       const teamsData = await fetchTeams();
-  //       if (teamsData.error) {
-  //         // If there's an error (like invalid password), clear stored password
-  //         localStorage.removeItem('password');
-  //         setIsAuthenticated(false);
-  //         setIsPasswordPromptOpen(true);
-  //       } else {
-  //         setTeams(teamsData);
-  //       }
-  //     }
-  //   };
-  //   getTeams();
-  // }, [isAuthenticated]);
+  // Fetch teams on component mount
+  useEffect(() => {
+    setIsPasswordPromptOpen(true);
+    const handlePasswordSubmit = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password: password }),
+        });
+        if (response.ok) {
+          localStorage.setItem('password', password);
+          setIsAuthenticated(true);
+          setIsPasswordPromptOpen(false);
+          const data = await response.json();
+          setTeams(data.data);
+        } else {
+          alert('Invalid password. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error validating password. Please try again.');
+      }
+    };
+    handlePasswordSubmit();
+  }, []);
 
   const handlePasswordSubmit = async () => {
     try {
