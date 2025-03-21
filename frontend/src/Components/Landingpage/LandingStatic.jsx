@@ -86,7 +86,7 @@ function LandingStatic() {
           </div>
 
           <p className="max-w-2xl mx-auto font-bold text-[#e5e7eb] text-base md:text-lg px-4">
-            ( IIT (ISM) students not need to register )
+            (IIT (ISM) students do not need to register.)
           </p>
           <p className="max-w-2xl mx-auto text-gray-400 text-base md:text-lg px-4">
             The countdown has begun for Hackfest 2025—where bold ideas meet
@@ -95,26 +95,7 @@ function LandingStatic() {
             together to reshape the future.
           </p>
 
-          <form
-            onSubmit={handleSubmit}
-            className="max-w-md mx-auto flex flex-col md:flex-row gap-2 px-4"
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg focus:outline-none focus:border-greentext-green-400 text-gray-300"
-              required
-            />
-            <button
-              type="submit"
-              onClick={handlejoin}
-              className="px-6 py-2 my-6 md:my-0 bg-orange-100 rounded-lg hover:bg-red-100 text-black transition-colors"
-            >
-              Join Waitlist
-            </button>
-          </form>
+           
         </div>
         <CountdownTimerPage />
 
