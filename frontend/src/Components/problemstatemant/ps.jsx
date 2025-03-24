@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import gofloww from '../../assets/gofloww.png';
 import design from '../../assets/des.jpeg';
 import grull from '../../assets/grull.svg';
+import matics from '../../assets/matics.svg';
 
 const ProblemStatement = ({ companies }) => {
   // Sample company data - replace with your actual data
@@ -28,6 +29,13 @@ const ProblemStatement = ({ companies }) => {
       logo: grull,
       docsLink: "/problemstatement/ps3",
       description: "Decentralized Arbitration System"
+    },
+    {
+      id: 4,
+      name: "Matics",
+      logo: matics,
+      docsLink: "/problemstatement/ps4",
+      description: "HectoClash - The Ultimate Mental Math Duel"
     }
   ];
 
