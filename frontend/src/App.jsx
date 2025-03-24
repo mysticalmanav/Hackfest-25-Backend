@@ -12,6 +12,8 @@ import Login from "./Components/Login/Login.jsx";
 import Dashboard from "./Components/Dashboard/Dashboard.jsx";
 import ProblemStatementPage from "./Components/problemstatemant/pspage.jsx";
 import Ps1 from "./Components/problemstatemant/ps1.jsx";
+import Ps2 from "./Components/problemstatemant/ps2.jsx";
+import Ps3 from "./Components/problemstatemant/ps3.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -32,6 +34,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/problemstatement" element={<ProblemStatementPage />} />
           <Route path="/problemstatement/ps1" element={<Ps1 />} />
+          <Route path="/problemstatement/ps2" element={<Ps2 />}/>
+          <Route path="/problemstatement/ps3" element={<Ps3 />} />
         </Routes>
       </BrowserRouter>
     </>

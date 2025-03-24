@@ -2,6 +2,8 @@ import React from "react";
 import { ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 import gofloww from '../../assets/gofloww.png';
+import design from '../../assets/des.jpeg';
+import grull from '../../assets/grull.svg';
 
 const ProblemStatement = ({ companies }) => {
   // Sample company data - replace with your actual data
@@ -12,6 +14,20 @@ const ProblemStatement = ({ companies }) => {
       logo: gofloww,
       docsLink: "/problemstatement/ps1",
       description: "Atom Mail Challenge"
+    },
+    {
+      id: 2,
+      name: "Design Ingenesis",
+      logo: design,
+      docsLink: "/problemstatement/ps2",
+      description: "Automatic Paper Printing Kiosk"
+    },
+    {
+      id: 3,
+      name: "Grull",
+      logo: grull,
+      docsLink: "/problemstatement/ps3",
+      description: "Decentralized Arbitration System"
     }
   ];
 
