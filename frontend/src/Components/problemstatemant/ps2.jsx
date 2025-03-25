@@ -27,7 +27,7 @@ function Ps2() {
         >
           <h2 className="text-2xl font-semibold text-orange-100 mb-4">Objective</h2>
           <p className="text-gray-400">
-            Design a CAD model of an automatic vending printing machine that allows users to upload, print, and securely delete documents. 
+            Design a CAD model of an automatic paper printing machine that allows users to upload, print, and securely delete documents. 
             This machine should be suitable for public places such as airports, colleges, banks, and other high-footfall areas.
           </p>
         </motion.div>
