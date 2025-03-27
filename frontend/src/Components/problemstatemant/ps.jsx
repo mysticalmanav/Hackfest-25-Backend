@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import gofloww from '../../assets/gofloww.png';
 import design from '../../assets/des.jpeg';
 import grull from '../../assets/grull.svg';
-import matics from '../../assets/matics.svg';
+import matics from '../../assets/matiks.png';
 import chillr from '../../assets/chillr.webp';
 
 const ProblemStatement = ({ companies }) => {
@@ -40,7 +40,7 @@ const ProblemStatement = ({ companies }) => {
     },
     {
       id: 4,
-      name: "Matics",
+      name: "Matiks",
       logo: matics,
       docsLink: "/problemstatement/ps4",
       description: "HectoClash - The Ultimate Mental Math Duel"
@@ -50,7 +50,7 @@ const ProblemStatement = ({ companies }) => {
       name: "Chillr",
       logo: chillr,
       docsLink: "/problemstatement/ps6",
-      description: "First-Expiry-First-Out (FEFO) & Expiry Date Management for Perishable Goods"
+      description: "Mobile App for Ticket Sales Tracking & Event Analytics"
     },
     {
       id: 7,
