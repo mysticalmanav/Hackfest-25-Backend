@@ -14,7 +14,14 @@ const ProblemStatement = ({ companies }) => {
       name: "GoFloww ",
       logo: gofloww,
       docsLink: "/problemstatement/ps1",
-      description: "Atom Mail Challenge"
+      description: "GoFloww Atom Mail Challenge"
+    },
+    {
+      id: 5,
+      name: "GoFloww ",
+      logo: gofloww,
+      docsLink: "/problemstatement/ps5",
+      description: "GoFloww Atom HR Employee Performance & Feedback Management Module"
     },
     {
       id: 2,
