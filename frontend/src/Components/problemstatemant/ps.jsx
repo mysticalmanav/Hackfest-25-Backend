@@ -5,6 +5,7 @@ import gofloww from '../../assets/gofloww.png';
 import design from '../../assets/des.jpeg';
 import grull from '../../assets/grull.svg';
 import matics from '../../assets/matics.svg';
+import chillr from '../../assets/chillr.webp';
 
 const ProblemStatement = ({ companies }) => {
   // Sample company data - replace with your actual data
@@ -43,6 +44,20 @@ const ProblemStatement = ({ companies }) => {
       logo: matics,
       docsLink: "/problemstatement/ps4",
       description: "HectoClash - The Ultimate Mental Math Duel"
+    },
+    {
+      id: 6,
+      name: "Chillr",
+      logo: chillr,
+      docsLink: "/problemstatement/ps6",
+      description: "First-Expiry-First-Out (FEFO) & Expiry Date Management for Perishable Goods"
+    },
+    {
+      id: 7,
+      name: "Chillr",
+      logo: chillr,
+      docsLink: "/problemstatement/ps7",
+      description: "AI-Powered Multichannel Sentiment Monitoring & Real-Time Issue Detection for Events"
     }
   ];
 
