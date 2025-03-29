@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User, Eye, EyeOff } from 'lucide-react';
 import {toast, Toaster} from 'react-hot-toast';
@@ -11,6 +11,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    // Check if the user is already logged in
+    const teamData = localStorage.getItem('teamData');
+    if (teamData) {
+      navigate('/dashboard');
+    }
+  }
+  , [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

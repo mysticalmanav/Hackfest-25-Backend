@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, User, School, Calendar, Trophy, LogOut, Mail, X, ExternalLink } from 'lucide-react';
+import { Users, User, School, Calendar, Trophy, LogOut, Mail, X, ExternalLink, QrCode, Eye, EyeOff } from 'lucide-react';
+import { QRCodeCanvas } from 'qrcode.react';
 import toast from 'react-hot-toast';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [teamData, setTeamData] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [showQR, setShowQR] = useState(false);
+  const [isQRVisible, setIsQRVisible] = useState(false);
 
   useEffect(() => {
     const storedTeamData = localStorage.getItem('teamData');
@@ -37,6 +40,13 @@ const Dashboard = () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSelgP1FoqZzMMhirj7VIwppKIrUXYWz_XptQWgwLKIUq_CHKA/viewform?usp=header', '_blank');
   };
 
+  const generateQRData = () => {
+    return JSON.stringify({
+      teamId: teamData.uniqueId,
+      password: teamData.password
+    });
+  };
+
   if (!teamData) {
     return (
       <div className="min-h-screen bg-zinc-900 flex items-center justify-center">
@@ -50,6 +60,58 @@ const Dashboard = () => {
       {/* Blur overlay when logout confirmation is shown */}
       {showLogoutConfirm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40" />
+      )}
+
+      {/* QR Code Modal */}
+      {showQR && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowQR(false)} />
+          <div className="bg-zinc-800 rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 border border-zinc-700 relative z-50">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-semibold text-orange-100">Team QR Code</h3>
+              <button
+                onClick={() => setShowQR(false)}
+                className="text-gray-400 hover:text-gray-300 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div className="relative">
+              <div className={`transition-all duration-500 ${isQRVisible ? '' : 'blur-xl'}`}>
+                <div className="bg-white p-4 rounded-lg">
+                  <QRCodeCanvas
+                    value={generateQRData()}
+                    size={256}
+                    level="H"
+                    includeMargin={true}
+                  />
+                </div>
+              </div>
+              
+              <button
+                onClick={() => setIsQRVisible(!isQRVisible)}
+                className="mt-6 w-full flex items-center justify-center gap-2 bg-orange-100 text-black px-4 py-3 rounded-lg font-medium hover:bg-orange-200 transition-colors"
+              >
+                {isQRVisible ? (
+                  <>
+                    <EyeOff className="w-5 h-5" />
+                    Hide QR Code
+                  </>
+                ) : (
+                  <>
+                    <Eye className="w-5 h-5" />
+                    Show QR Code
+                  </>
+                )}
+              </button>
+            </div>
+            
+            <p className="mt-4 text-sm text-gray-400 text-center">
+              This QR code contains your team credentials. Keep it secure and don't share it with others.
+            </p>
+          </div>
+        </div>
       )}
 
       {/* Logout confirmation popup */}
@@ -88,13 +150,22 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
             <h1 className="text-3xl font-bold text-orange-100">Team Dashboard</h1>
-            <button
-              onClick={() => setShowLogoutConfirm(true)}
-              className="flex items-center px-4 py-2 text-sm font-medium text-black bg-orange-100 rounded-lg hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-100 transition-colors"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </button>
+            <div className="flex gap-4">
+              <button
+                onClick={() => setShowQR(true)}
+                className="flex items-center px-4 py-2 text-sm font-medium text-orange-100 bg-zinc-700 rounded-lg hover:bg-zinc-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-100 transition-colors"
+              >
+                <QrCode className="w-4 h-4 mr-2" />
+                Get QR
+              </button>
+              <button
+                onClick={() => setShowLogoutConfirm(true)}
+                className="flex items-center px-4 py-2 text-sm font-medium text-black bg-orange-100 rounded-lg hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-100 transition-colors"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </header>

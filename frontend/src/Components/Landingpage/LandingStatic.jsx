@@ -102,7 +102,7 @@ function LandingStatic() {
         <div className="text-orange-200 text-3xl mt-10 p-1 lg:p-4">
           {" "}
           <SplitText
-            text="Event : April 4th to 6th, 2025."
+            text="Event : April 4th to 6th, 2025"
             className="text-md md:text-3xl lg:text-4xl text-center font-mono pressfont"
             delay={150}
             animationFrom={{ opacity: 0, transform: "translate3d(0,50px,0)" }}
