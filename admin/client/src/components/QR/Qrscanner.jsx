@@ -45,7 +45,7 @@ const QrScanner = () => {
     console.log(scannedData);
     try {
       const response = await axios.post(
-        `https://hackfest-25-backend-1.onrender.com/api/${action}`,
+        `${import.meta.env.VITE_BASE_URL}/api/${action}`,
         scannedData
       );
       console.log(response);
