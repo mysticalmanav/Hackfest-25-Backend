@@ -4,6 +4,7 @@ import axios from "axios";
 const QrScanner = () => {
   const [scannedData, setScannedData] = useState("");
   const [scanner, setScanner] = useState(null);
+  const [count, setCount] = useState(0);
   useEffect(() => {
     if (scanner) {
       scanner.clear().catch((error) => {
@@ -14,7 +15,7 @@ const QrScanner = () => {
     const config = {
       fps: 10,
       qrbox: { width: 250, height: 250 },
-      facingMode: "environment",
+      facingMode: "user",
     };
 
     const newScanner = new Html5QrcodeScanner("reader", config, false); // verbose=false
@@ -34,7 +35,7 @@ const QrScanner = () => {
         console.error("Failed to clear scanner on unmount", error);
       });
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
 
   const sendData = async (action) => {
     console.log(action);
@@ -46,7 +47,7 @@ const QrScanner = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/${action}`,
-        scannedData
+        { scannedData, count }
       );
       console.log(response);
       alert(data.message || "Action completed");
@@ -67,10 +68,10 @@ const QrScanner = () => {
           <div style={styles.result}>
             <p>Scanned: {scannedData}</p>
             <div style={styles.buttonGroup}>
-              <button style={styles.button} onClick={() => sendData("IN")}>
+              <button style={styles.button} onClick={() => sendData("in")}>
                 Check IN
               </button>
-              <button style={styles.button} onClick={() => sendData("OUT")}>
+              <button style={styles.button} onClick={() => sendData("out")}>
                 Check OUT
               </button>
             </div>
