@@ -3,7 +3,7 @@ import "./App.css";
 import LandingPage from "./Components/Landingpage/LandingPage.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Sendingemail from "./Components/sendingmessage/Sendingemail.jsx";
-import Comingsoon from '../src/Components/ComingSoon/Comingsoonpage.jsx'
+import Comingsoon from "../src/Components/ComingSoon/Comingsoonpage.jsx";
 import AboutUsPage from "./Components/AboutUs/Aboutuspage.jsx";
 import CoreTeamPage from "./Components/Team/CoreTeamPage.jsx";
 import ContactUsPage from "./Components/ContactUs/ContactUs.jsx";
@@ -21,6 +21,7 @@ import Ps7 from "./Components/problemstatemant/ps7.jsx";
 import Ps8 from "./Components/problemstatemant/ps8.jsx";
 import Ps9 from "./Components/problemstatemant/ps9.jsx";
 import Ps10 from "./Components/problemstatemant/ps10.jsx";
+import Ps11 from "./Components/problemstatemant/ps11.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -40,7 +41,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/problemstatement" element={<ProblemStatementPage />} />
           <Route path="/problemstatement/ps1" element={<Ps1 />} />
-          <Route path="/problemstatement/ps2" element={<Ps2 />}/>
+          <Route path="/problemstatement/ps2" element={<Ps2 />} />
           <Route path="/problemstatement/ps3" element={<Ps3 />} />
           <Route path="/problemstatement/ps4" element={<Ps4 />} />
           <Route path="/problemstatement/ps5" element={<Ps5 />} />
@@ -49,6 +50,7 @@ function App() {
           <Route path="/problemstatement/ps8" element={<Ps8 />} />
           <Route path="/problemstatement/ps9" element={<Ps9 />} />
           <Route path="/problemstatement/ps10" element={<Ps10 />} />
+          <Route path="/problemstatement/ps11" element={<Ps11 />} />
         </Routes>
       </BrowserRouter>
     </>
