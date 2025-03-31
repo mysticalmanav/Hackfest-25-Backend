@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { fetchTeams, updateTeamStatus } from '../api/teamApi';
+import React, { useState, useEffect } from "react";
+import { fetchTeams, updateTeamStatus } from "../api/teamApi";
 
 const TeamList = () => {
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [password, setPassword] = useState('');
-  const [isPasswordPromptOpen, setIsPasswordPromptOpen] = useState(!localStorage.getItem('password'));
+  const [password, setPassword] = useState("");
+  const [isPasswordPromptOpen, setIsPasswordPromptOpen] = useState(
+    !localStorage.getItem("password")
+  );
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -18,25 +20,28 @@ const TeamList = () => {
     setIsPasswordPromptOpen(true);
     const handlePasswordSubmit = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password: password }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_BASE_URL}/api/login`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ password: password }),
+          }
+        );
         if (response.ok) {
-          localStorage.setItem('password', password);
+          localStorage.setItem("password", password);
           setIsAuthenticated(true);
           setIsPasswordPromptOpen(false);
           const data = await response.json();
           setTeams(data.data);
         } else {
-          alert('Invalid password. Please try again.');
+          alert("Invalid password. Please try again.");
         }
       } catch (error) {
-        console.error('Error:', error);
-        alert('Error validating password. Please try again.');
+        console.error("Error:", error);
+        alert("Error validating password. Please try again.");
       }
     };
     handlePasswordSubmit();
@@ -44,43 +49,51 @@ const TeamList = () => {
 
   const handlePasswordSubmit = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password: password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password: password }),
+        }
+      );
+      console.log(response);
       if (response.ok) {
-        localStorage.setItem('password', password);
+        localStorage.setItem("password", password);
         setIsAuthenticated(true);
         setIsPasswordPromptOpen(false);
         const data = await response.json();
         setTeams(data.data);
       } else {
-        alert('Invalid password. Please try again.');
+        alert("Invalid password. Please try again.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('Error validating password. Please try again.');
+      console.error("Error:", error);
+      alert("Error validating password. Please try again.");
     }
   };
 
   const handleVerify = async (id) => {
-    const updatedTeam = await updateTeamStatus(id, 'verified');
+    const updatedTeam = await updateTeamStatus(id, "verified");
     if (updatedTeam) {
-      setTeams(teams.map(team =>
-        team._id === id ? { ...team, status: 'verified' } : team
-      ));
+      setTeams(
+        teams.map((team) =>
+          team._id === id ? { ...team, status: "verified" } : team
+        )
+      );
     }
   };
 
   const handleUnverify = async (id) => {
-    const updatedTeam = await updateTeamStatus(id, 'pending');
+    const updatedTeam = await updateTeamStatus(id, "pending");
     if (updatedTeam) {
-      setTeams(teams.map(team =>
-        team._id === id ? { ...team, status: 'pending' } : team
-      ));
+      setTeams(
+        teams.map((team) =>
+          team._id === id ? { ...team, status: "pending" } : team
+        )
+      );
     }
   };
 
@@ -109,9 +122,9 @@ const TeamList = () => {
   };
 
   const confirmAction = async () => {
-    if (actionType === 'verify') {
+    if (actionType === "verify") {
       await handleVerify(teamIdToUpdate);
-    } else if (actionType === 'unverify') {
+    } else if (actionType === "unverify") {
       await handleUnverify(teamIdToUpdate);
     }
     closeConfirmationModal();
@@ -120,193 +133,193 @@ const TeamList = () => {
   // Inline styles
   const styles = {
     container: {
-      maxWidth: '800px',
-      margin: '0 auto',
-      padding: '20px',
-      fontFamily: 'Arial, sans-serif',
+      maxWidth: "800px",
+      margin: "0 auto",
+      padding: "20px",
+      fontFamily: "Arial, sans-serif",
     },
     heading: {
-      textAlign: 'center',
-      color: '#333',
-      marginBottom: '20px',
+      textAlign: "center",
+      color: "#333",
+      marginBottom: "20px",
     },
     teamList: {
-      listStyleType: 'none',
-      padding: '0',
+      listStyleType: "none",
+      padding: "0",
     },
     teamItem: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '15px',
-      marginBottom: '10px',
-      backgroundColor: '#fff',
-      borderRadius: '8px',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-      transition: 'transform 0.2s, box-shadow 0.2s',
-      cursor: 'pointer',
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "15px",
+      marginBottom: "10px",
+      backgroundColor: "#fff",
+      borderRadius: "8px",
+      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      cursor: "pointer",
     },
     teamItemHover: {
-      transform: 'translateY(-2px)',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.15)',
+      transform: "translateY(-2px)",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.15)",
     },
     teamName: {
-      fontSize: '18px',
-      color: '#333',
-      fontWeight: '500',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
+      fontSize: "18px",
+      color: "#333",
+      fontWeight: "500",
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
     },
     teamid: {
-      fontSize: '18px',
-      color: '#333',
-      fontWeight: '500',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
+      fontSize: "18px",
+      color: "#333",
+      fontWeight: "500",
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
     },
     statusBadge: {
-      padding: '4px 8px',
-      borderRadius: '12px',
-      fontSize: '12px',
-      fontWeight: '600',
-      textTransform: 'uppercase',
+      padding: "4px 8px",
+      borderRadius: "12px",
+      fontSize: "12px",
+      fontWeight: "600",
+      textTransform: "uppercase",
     },
     statusPending: {
-      backgroundColor: '#ffcc00',
-      color: '#000',
+      backgroundColor: "#ffcc00",
+      color: "#000",
     },
     statusVerified: {
-      backgroundColor: '#28a745',
-      color: '#fff',
+      backgroundColor: "#28a745",
+      color: "#fff",
     },
     buttonGroup: {
-      display: 'flex',
-      gap: '10px',
+      display: "flex",
+      gap: "10px",
     },
     verifyButton: {
-      padding: '8px 16px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
-      backgroundColor: '#007bff',
-      color: 'white',
-      transition: 'background-color 0.3s, color 0.3s',
+      padding: "8px 16px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      fontSize: "14px",
+      fontWeight: "500",
+      backgroundColor: "#007bff",
+      color: "white",
+      transition: "background-color 0.3s, color 0.3s",
     },
     verifyButtonHover: {
-      backgroundColor: '#0056b3',
+      backgroundColor: "#0056b3",
     },
     verifyButtonVerified: {
-      backgroundColor: '#28a745',
-      cursor: 'not-allowed',
+      backgroundColor: "#28a745",
+      cursor: "not-allowed",
     },
     unverifyButton: {
-      padding: '8px 16px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
-      backgroundColor: '#dc3545',
-      color: 'white',
-      transition: 'background-color 0.3s, color 0.3s',
+      padding: "8px 16px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      fontSize: "14px",
+      fontWeight: "500",
+      backgroundColor: "#dc3545",
+      color: "white",
+      transition: "background-color 0.3s, color 0.3s",
     },
     unverifyButtonDisabled: {
-      backgroundColor: '#6c757d',
-      cursor: 'not-allowed',
+      backgroundColor: "#6c757d",
+      cursor: "not-allowed",
     },
     unverifyButtonHover: {
-      backgroundColor: '#c82333',
+      backgroundColor: "#c82333",
     },
     modalOverlay: {
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: '1000',
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: "1000",
     },
     modalContent: {
-      backgroundColor: '#fff',
-      padding: '20px',
-      borderRadius: '8px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      maxWidth: '500px',
-      width: '100%',
-      textAlign: 'left',
+      backgroundColor: "#fff",
+      padding: "20px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      maxWidth: "500px",
+      width: "100%",
+      textAlign: "left",
     },
     modalCloseButton: {
-      padding: '8px 16px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      backgroundColor: '#dc3545',
-      color: 'white',
-      fontSize: '14px',
-      fontWeight: '500',
-      marginTop: '20px',
+      padding: "8px 16px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      backgroundColor: "#dc3545",
+      color: "white",
+      fontSize: "14px",
+      fontWeight: "500",
+      marginTop: "20px",
     },
     confirmationModalContent: {
-      backgroundColor: '#fff',
-      padding: '20px',
-      borderRadius: '8px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      maxWidth: '400px',
-      width: '100%',
-      textAlign: 'center',
+      backgroundColor: "#fff",
+      padding: "20px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+      maxWidth: "400px",
+      width: "100%",
+      textAlign: "center",
     },
     confirmationText: {
-      fontSize: '16px',
-      marginBottom: '20px',
+      fontSize: "16px",
+      marginBottom: "20px",
     },
     highlightedText: {
-      fontWeight: 'bold',
-      color: '#007bff', // Blue for "verify"
-      fontSize: '18px',
-      textDecoration: 'underline',
+      fontWeight: "bold",
+      color: "#007bff", // Blue for "verify"
+      fontSize: "18px",
+      textDecoration: "underline",
     },
     highlightedTextUnverify: {
-      fontWeight: 'bold',
-      color: '#dc3545', // Red for "unverify"
-      fontSize: '18px',
-      textDecoration: 'underline',
+      fontWeight: "bold",
+      color: "#dc3545", // Red for "unverify"
+      fontSize: "18px",
+      textDecoration: "underline",
     },
     confirmationButtonGroup: {
-      display: 'flex',
-      justifyContent: 'center',
-      gap: '10px',
+      display: "flex",
+      justifyContent: "center",
+      gap: "10px",
     },
     confirmationButton: {
-      padding: '8px 16px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
-      transition: 'background-color 0.3s, color 0.3s',
+      padding: "8px 16px",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      fontSize: "14px",
+      fontWeight: "500",
+      transition: "background-color 0.3s, color 0.3s",
     },
     confirmButton: {
-      backgroundColor: '#28a745',
-      color: 'white',
+      backgroundColor: "#28a745",
+      color: "white",
     },
     cancelButton: {
-      backgroundColor: '#dc3545',
-      color: 'white',
+      backgroundColor: "#dc3545",
+      color: "white",
     },
     idProofLink: {
-      color: '#007bff',
-      textDecoration: 'none',
-      fontWeight: '500',
+      color: "#007bff",
+      textDecoration: "none",
+      fontWeight: "500",
     },
     idProofLinkHover: {
-      textDecoration: 'underline',
+      textDecoration: "underline",
     },
   };
 
@@ -320,7 +333,7 @@ const TeamList = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
             />
             <button onClick={handlePasswordSubmit} style={styles.confirmButton}>
               Submit
@@ -333,23 +346,27 @@ const TeamList = () => {
         <div style={styles.container}>
           <h1 style={styles.heading}>Team Verification</h1>
           <ul style={styles.teamList}>
-            {teams.map(team => (
+            {teams.map((team) => (
               <li
                 key={team._id}
                 style={{
                   ...styles.teamItem,
-                  ...(selectedTeam?._id === team._id ? styles.teamItemHover : {}),
+                  ...(selectedTeam?._id === team._id
+                    ? styles.teamItemHover
+                    : {}),
                 }}
                 onClick={() => handleTeamClick(team)}
               >
                 <div style={styles.teamName}>
                   {team.teamName}
-                  <span>  </span>
+                  <span> </span>
                   {team.uniqueId}
                   <span
                     style={{
                       ...styles.statusBadge,
-                      ...(team.status === 'pending' ? styles.statusPending : styles.statusVerified),
+                      ...(team.status === "pending"
+                        ? styles.statusPending
+                        : styles.statusVerified),
                     }}
                   >
                     {team.status}
@@ -360,26 +377,34 @@ const TeamList = () => {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      openConfirmationModal('verify', team._id, team.teamName);
+                      openConfirmationModal("verify", team._id, team.teamName);
                     }}
                     style={{
                       ...styles.verifyButton,
-                      ...(team.status === 'verified' ? styles.verifyButtonVerified : {}),
+                      ...(team.status === "verified"
+                        ? styles.verifyButtonVerified
+                        : {}),
                     }}
-                    disabled={team.status === 'verified'}
+                    disabled={team.status === "verified"}
                   >
-                    {team.status === 'verified' ? 'Verified' : 'Verify'}
+                    {team.status === "verified" ? "Verified" : "Verify"}
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      openConfirmationModal('unverify', team._id, team.teamName);
+                      openConfirmationModal(
+                        "unverify",
+                        team._id,
+                        team.teamName
+                      );
                     }}
                     style={{
                       ...styles.unverifyButton,
-                      ...(team.status === 'pending' ? styles.unverifyButtonDisabled : {}),
+                      ...(team.status === "pending"
+                        ? styles.unverifyButtonDisabled
+                        : {}),
                     }}
-                    disabled={team.status === 'pending'}
+                    disabled={team.status === "pending"}
                   >
                     Unverify
                   </button>
@@ -391,13 +416,25 @@ const TeamList = () => {
           {/* Team Details Modal */}
           {isModalOpen && selectedTeam && (
             <div style={styles.modalOverlay} onClick={closeModal}>
-              <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div
+                style={styles.modalContent}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <h2>{selectedTeam.teamName} Details</h2>
-                <p><strong>Leader:</strong> {selectedTeam.leaderName}</p>
-                <p><strong>Email:</strong> {selectedTeam.email}</p>
-                <p><strong>College:</strong> {selectedTeam.leaderCollege}</p>
-                <p><strong>Year:</strong> {selectedTeam.leaderYear}</p>
-                <p><strong>ID Proof:</strong>{' '}
+                <p>
+                  <strong>Leader:</strong> {selectedTeam.leaderName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {selectedTeam.email}
+                </p>
+                <p>
+                  <strong>College:</strong> {selectedTeam.leaderCollege}
+                </p>
+                <p>
+                  <strong>Year:</strong> {selectedTeam.leaderYear}
+                </p>
+                <p>
+                  <strong>ID Proof:</strong>{" "}
                   <a
                     href={selectedTeam.idProofUrl}
                     target="_blank"
@@ -407,11 +444,14 @@ const TeamList = () => {
                     View ID Proof
                   </a>
                 </p>
-                <p><strong>Members:</strong></p>
+                <p>
+                  <strong>Members:</strong>
+                </p>
                 <ul>
                   {selectedTeam.members.map((member, index) => (
                     <li key={index}>
-                      <strong>{member.name}</strong> ({member.college}, {member.year}) - {member.email}
+                      <strong>{member.name}</strong> ({member.college},{" "}
+                      {member.year}) - {member.email}
                     </li>
                   ))}
                 </ul>
@@ -425,30 +465,38 @@ const TeamList = () => {
           {/* Confirmation Modal */}
           {isConfirmationModalOpen && (
             <div style={styles.modalOverlay} onClick={closeConfirmationModal}>
-              <div style={styles.confirmationModalContent} onClick={(e) => e.stopPropagation()}>
+              <div
+                style={styles.confirmationModalContent}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <p style={styles.confirmationText}>
-                  Are you sure you want to{' '}
+                  Are you sure you want to{" "}
                   <span
                     style={
-                      actionType === 'verify'
+                      actionType === "verify"
                         ? styles.highlightedText
                         : styles.highlightedTextUnverify
                     }
                   >
                     {actionType}
-                  </span>{' '}
-                  the team{' '}
-                  <strong>{teamNameToUpdate}</strong>?
+                  </span>{" "}
+                  the team <strong>{teamNameToUpdate}</strong>?
                 </p>
                 <div style={styles.confirmationButtonGroup}>
                   <button
-                    style={{ ...styles.confirmationButton, ...styles.confirmButton }}
+                    style={{
+                      ...styles.confirmationButton,
+                      ...styles.confirmButton,
+                    }}
                     onClick={confirmAction}
                   >
                     Confirm
                   </button>
                   <button
-                    style={{ ...styles.confirmationButton, ...styles.cancelButton }}
+                    style={{
+                      ...styles.confirmationButton,
+                      ...styles.cancelButton,
+                    }}
                     onClick={closeConfirmationModal}
                   >
                     Cancel
