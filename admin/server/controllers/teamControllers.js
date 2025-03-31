@@ -111,6 +111,7 @@ export const teamOut = async (req, res) => {
 export const teamIn = async (req, res) => {
   console.log("teamin");
   try {
+    console.log(req.body);
     const { parsedData, count } = req.body;
     console.log(parsedData, count);
     let uniqueId = parsedData.teamId;
@@ -120,15 +121,29 @@ export const teamIn = async (req, res) => {
     if (!team) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
-    console.log(team);
+
     const currentDate = new Date();
-    const diffInMinutes = team.outTime.count * (currentDate - team.outTime.date);
+    console.log("currentDate", team.outTime.date);
+    if (!team.outTime.date) {
+      await Team.findOneAndUpdate(
+        { uniqueId },
+        {
+          outTime: {
+            date: currentDate,
+            count: 0,
+          },
+        },
+        { new: true } // Return the updated document
+      );
+    }
+    const diffInMinutes = team.outTime.count*(currentDate - new Date(team.outTime.date));
+    let final_count = Math.max(team.outTime.count - count,0);
     await Team.findOneAndUpdate(
       { uniqueId },
       {
         outTime: {
           date: currentDate,
-          count: team.outTime.count - count,
+          count: final_count,
         },
         totalTime: team.totalTime + diffInMinutes,
       },
@@ -148,7 +163,7 @@ export const runEveryMinute = async () => {
       const { outTime, count } = team;
       if (outTime.date) {
         const newOutTime = new Date();
-        const diffInMinutes = count * (newOutTime - outTime.date);
+        const diffInMinutes = count * (newOutTime - new Date(outTime.date));
         if (diffInMinutes >= 5000) {
           await Team.findOneAndUpdate(
             { uniqueId: team.uniqueId },

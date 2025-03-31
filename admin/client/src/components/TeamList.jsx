@@ -359,7 +359,9 @@ const TeamList = () => {
                 onClick={() => handleTeamClick(team)}
               >
                 <div style={styles.teamName}>
-                  {team.password}
+                  {team.teamName}
+                  <span>  </span>
+                  {team.totalTime/60000} minutes
                   <span> </span>
                   {team.uniqueId}
                   <span
