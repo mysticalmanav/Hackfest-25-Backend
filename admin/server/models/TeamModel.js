@@ -22,7 +22,7 @@ const TeamSchema = new mongoose.Schema(
     status: { type: String, required: true, default: "pending" },
     referral: { type: String, default: "" },
     outTime: { 
-      type: {
+      type: { 
         date: { type: String, default: null },
         count: { type: Number, default: 0 }
       },

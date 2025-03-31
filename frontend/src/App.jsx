@@ -3,7 +3,7 @@ import "./App.css";
 import LandingPage from "./Components/Landingpage/LandingPage.jsx";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Sendingemail from "./Components/sendingmessage/Sendingemail.jsx";
-import Comingsoon from '../src/Components/ComingSoon/Comingsoonpage.jsx'
+import Comingsoon from "../src/Components/ComingSoon/Comingsoonpage.jsx";
 import AboutUsPage from "./Components/AboutUs/Aboutuspage.jsx";
 import CoreTeamPage from "./Components/Team/CoreTeamPage.jsx";
 import ContactUsPage from "./Components/ContactUs/ContactUs.jsx";
@@ -41,7 +41,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/problemstatement" element={<ProblemStatementPage />} />
           <Route path="/problemstatement/ps1" element={<Ps1 />} />
-          <Route path="/problemstatement/ps2" element={<Ps2 />}/>
+          <Route path="/problemstatement/ps2" element={<Ps2 />} />
           <Route path="/problemstatement/ps3" element={<Ps3 />} />
           <Route path="/problemstatement/ps4" element={<Ps4 />} />
           <Route path="/problemstatement/ps5" element={<Ps5 />} />
