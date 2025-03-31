@@ -83,7 +83,7 @@ const Ps9 = () => {
             </li>
             <li><strong>Feature Prioritization</strong>
             <ul className='text-gray-400 list-disc pl-5 space-y-2'>
-            <li>Choose product features that would make the most impact on user engagement and retention.</li>\
+            <li>Choose product features that would make the most impact on user engagement and retention.</li>
             </ul>
             </li>
             <li><strong>Redesign the User Journey</strong>
