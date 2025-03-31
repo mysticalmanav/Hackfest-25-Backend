@@ -6,6 +6,7 @@ import design from "../../assets/des.jpeg";
 import grull from "../../assets/grull.svg";
 import matics from "../../assets/matiks.png";
 import chillr from "../../assets/chillr.webp";
+import productspace from "../../assets/productspace.png";
 
 const ProblemStatement = ({ companies }) => {
   // Sample company data - replace with your actual data
@@ -68,6 +69,14 @@ const ProblemStatement = ({ companies }) => {
       docsLink: "/problemstatement/ps8",
       description:
         "Real-Time RAG Assistant for Enterprise Support/Marketing | IIT (ISM) Dhanbad",
+    },
+    {
+      id: 9,
+      name: "Product Space",
+      logo: productspace,
+      docsLink: "https://theproductspace.notion.site/Problem-Statement-IIT-Dhanbad-1c6eeb1af145809ba5eef8b933c741c1",
+      description:
+        "Zomato Daily - Reclaiming the Everyday Order",
     },
   ];
 
