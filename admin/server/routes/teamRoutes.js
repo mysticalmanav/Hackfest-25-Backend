@@ -11,9 +11,9 @@ const router = express.Router();
 
 // Route to fetch all teams
 router.get("/teams", checkPassword, getAllTeams);
-// router.post("/login", checkPassword, login);
+router.post("/login", checkPassword, login);
 
-router.post("/login", login);
+// router.post("/login", login);   
 // Route to update team status
 router.patch("/teams/:id/status", checkPassword, updateTeamStatus);
 

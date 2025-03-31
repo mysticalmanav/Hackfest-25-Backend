@@ -1,12 +1,19 @@
-import React from 'react'
-import TeamList from './components/TeamList.jsx'
+import { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import TeamList from "./components/TeamList.jsx";
+import QrScanner from "./components/QR/Qrscanner.jsx";
 
 function App() {
   return (
-    <div>
-      <TeamList />
-    </div>
-  )
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<TeamList />} />
+          <Route path="/Qr/scanner" element={<QrScanner />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
-export default App
+export default App;

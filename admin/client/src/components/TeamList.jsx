@@ -48,9 +48,10 @@ const TeamList = () => {
   }, []);
 
   const handlePasswordSubmit = async () => {
+    alert('sdjvbnbns');
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/api/login`,
+        `http://localhost:8000/api/login`,
         {
           method: "POST",
           headers: {
@@ -358,7 +359,7 @@ const TeamList = () => {
                 onClick={() => handleTeamClick(team)}
               >
                 <div style={styles.teamName}>
-                  {team.teamName}
+                  {team.password}
                   <span> </span>
                   {team.uniqueId}
                   <span
