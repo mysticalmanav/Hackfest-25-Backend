@@ -5,6 +5,8 @@ import {
   updateTeamStatus,
   checkPassword,
   login,
+  teamIn,
+  teamOut,
 } from "../controllers/teamControllers.js";
 
 const router = express.Router();
@@ -16,5 +18,6 @@ router.post("/login", checkPassword, login);
 // router.post("/login", login);   
 // Route to update team status
 router.patch("/teams/:id/status", checkPassword, updateTeamStatus);
-
+router.post("/in", teamIn);
+router.post("/out", teamOut);
 export default router;
