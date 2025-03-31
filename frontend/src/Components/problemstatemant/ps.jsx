@@ -74,7 +74,7 @@ const ProblemStatement = ({ companies }) => {
       id: 9,
       name: "Product Space",
       logo: productspace,
-      docsLink: "https://theproductspace.notion.site/Problem-Statement-IIT-Dhanbad-1c6eeb1af145809ba5eef8b933c741c1",
+      docsLink: "/problemstatement/ps9",
       description:
         "Zomato Daily - Reclaiming the Everyday Order",
     },

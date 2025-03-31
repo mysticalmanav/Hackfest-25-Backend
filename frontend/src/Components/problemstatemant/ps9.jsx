@@ -28,7 +28,7 @@ const Ps9 = () => {
         >
           <h2 className="text-2xl font-semibold text-orange-100 mb-4">Challenge</h2>
           <p className="text-gray-400">
-            You've been hired as the Senior Product Manager at Zomato, India's leading food delivery platform. Zomato has become a household name, providing food delivery services in over 500 cities across India. Despite this success, user engagement is declining, and the platform's average order value (AOV) stands at ₹350, compared to Swiggy’s ₹460. Additionally, Zomato's customer retention rate is stuck at 40%, with many users only placing orders during weekends or special occasions.
+            You’ve been hired as the Senior Product Manager at Zomato, India’s leading food delivery platform. Zomato has become a household name, providing food delivery services in over 500 cities across India. Despite this success, user engagement is declining, and the platform’s average order value (AOV) stands at ₹350, compared to Swiggy’s ₹460. Additionally, Zomato's customer retention rate is stuck at 40%, with many users only placing orders during weekends or special occasions.
           </p>
         </motion.div>
 
@@ -41,7 +41,12 @@ const Ps9 = () => {
         >
           <h2 className="text-2xl font-semibold text-orange-100 mb-4">Goal</h2>
           <p className="text-gray-400">
-            Develop a product strategy to increase customer retention and make Zomato the go-to platform for daily food ordering. Given the recommendation to focus on one goal, this strategy prioritizes retention to build a loyal user base and drive consistent engagement.
+          Your goal is to develop a product strategy to: [Be careful while picking up the goal - It’s recommended to focus on 1 goal]
+          <ul className="text-gray-400 list-disc pl-5 space-y-2"l>
+            <li>Increase customer retention and make Swiggy the go-to platform for daily food ordering.</li>
+            <li>Boost AOV by encouraging users to order more frequently and add more items per order.</li>
+            <li>Enhance the overall user experience and ensure a smoother journey from browsing to checkout.</li>
+          </ul>
           </p>
         </motion.div>
 
@@ -52,17 +57,46 @@ const Ps9 = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold text-orange-100 mb-4">Approach</h2>
-          <ul className="text-gray-400 list-disc pl-5 space-y-2">
-            <li>Review the current Zomato app, its features, and offerings to understand the baseline experience.</li>
-            <li>Understand Zomato’s business model and target audience to align the strategy with company goals.</li>
-            <li>Study current food delivery trends and consumer behavior to identify opportunities for daily ordering.</li>
-            <li>Analyze Swiggy’s approach to product features and customer engagement to benchmark best practices.</li>
-            <li>Develop user personas based on demographics and ordering habits to tailor retention efforts.</li>
-            <li>Identify friction points in the user journey that lead to cart abandonment or low engagement.</li>
-            <li>Prioritize features that would make the most impact on user retention, such as personalized offers or subscription models.</li>
-            <li>Propose changes to the user interface and experience to optimize for higher frequency of orders.</li>
-            <li>Define metrics and KPIs to measure success post-implementation (e.g., retention rate increase to 50%, daily active users growth).</li>
+          <h2 className="text-2xl font-semibold text-orange-100 mb-4">Deadline</h2>
+          <h3 className="text-xl font-semibold text-orange-100 mb-4">Please complete the task before 12th Apr'25 EOD.</h3>
+          <ul className="text-gray-400  pl-5 space-y-2">
+            <li><strong>Product Understanding and Overview</strong><ul  className="text-gray-400 list-disc pl-5 space-y-2">
+            <li>Review the current Swiggy app, its features, and offerings.</li>
+            <li> Understand Swiggy’s business model and target audience.</li>
+            </ul>
+            </li>
+            <li><strong>Market and Competitor Analysis</strong>
+            <ul  className="text-gray-400 list-disc pl-5 space-y-2">
+            <li>Study current food delivery trends and consumer behavior.</li>
+            <li>Analyze Zomato’s approach to product features and customer engagement.</li>
+            </ul>
+            </li>
+            <li><strong>User Persona Creation</strong>
+            <ul className="text-gray-400 list-disc pl-5 space-y-2">
+            <li>Develop personas based on user demographics and ordering habits.</li>
+            </ul>
+            </li>
+            <li><strong>Problem Identification</strong>
+            <ul className='text-gray-400 list-disc pl-5 space-y-2'>
+            <li>- Identify friction points in the user journey that lead to cart abandonment or low engagement.</li>
+            </ul>
+            </li>
+            <li><strong>Feature Prioritization</strong>
+            <ul className='text-gray-400 list-disc pl-5 space-y-2'>
+            <li>Choose product features that would make the most impact on user engagement and retention.</li>\
+            </ul>
+            </li>
+            <li><strong>Redesign the User Journey</strong>
+            <ul className='text-gray-400 list-disc pl-5 space-y-2'>
+            <li>Propose changes to the user interface and experience to optimize for higher frequency and larger orders.</li>
+            </ul>
+            </li>
+            <li><strong>Metrics and KPIs</strong>
+            <ul  className='text-gray-400 list-disc pl-5 space-y-2'>
+            <li>Define how success will be measured post-implementation (e.g., improved retention rate, increased AOV, higher user engagement).</li>
+            <li>Include a deck design that highlights your strategy and key metrics.</li>
+            </ul>
+            </li>
           </ul>
         </motion.div>
 
@@ -75,17 +109,18 @@ const Ps9 = () => {
         >
           <h2 className="text-2xl font-semibold text-orange-100 mb-4">Submission Details</h2>
           <p className="text-gray-400">
-            **Deadline:** 6th Mar’25 EOD
+            <strong>Deadline:</strong> 6th Mar’25 EOD <br />
+            <strong>Parameters on which the deck will be evaluated Criteria and a detailed feedback will be shared after the round 1</strong>
           </p>
           <p className="text-gray-400 mt-2">
-            **Submission Link:**{' '}
+            <strong>Submission Link:</strong>{' '}
             <a
               href="https://forms.gle/MbTqYTL7wLToZEVGA"
               className="text-blue-400 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://forms.gle/QYVjPezSU7nmVzRR6
+              https://forms.gle/MbTqYTL7wLToZEVGA
             </a>
           </p>
         </motion.div>
