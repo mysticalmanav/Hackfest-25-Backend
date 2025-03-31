@@ -49,8 +49,9 @@ const QrScanner = () => {
     }
     console.log(scannedData);
     try {
+      console.log("aagaya");
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/${action}`,
+        `${import.meta.env.QR_BACKEND}/api/${action}`,
         { scannedData, count }
       );
       console.log(response);
