@@ -81,7 +81,7 @@ const ProblemStatement = ({ companies }) => {
     },
     {
       id: 10,
-      name: "njm",
+      name: "Vyomchara",
       logo: ps10,
       docsLink: "/problemstatement/ps10",
       description:
