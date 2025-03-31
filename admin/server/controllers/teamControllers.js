@@ -61,7 +61,9 @@ export const updateTeamStatus = async (req, res) => {
 
 export const teamOut = async (req, res) => {
   try {
-    const { uniqueId, password, count } = req.body;
+    const { scannedData, count } = req.body;
+    uniqueId=scannedData.uniqueId;
+    password=scannedData.password;
 
     const team = await Team.findOne({ uniqueId, password });
 
@@ -89,8 +91,9 @@ export const teamOut = async (req, res) => {
 
 export const teamIn = async (req, res) => {
   try {
-    const { uniqueId, password, count } = req.body;
-
+    const { scannedData,count } = req.body;
+    uniqueId = scannedData.uniqueId;
+    password = scannedData.password;
     const team = await Team.findOne({ uniqueId, password });
 
     if (!team) {
@@ -145,4 +148,4 @@ export const runEveryMinute = async() => {
 };
 
 // Call the function to start the interval
-// runEveryMinute();
+runEveryMinute();
