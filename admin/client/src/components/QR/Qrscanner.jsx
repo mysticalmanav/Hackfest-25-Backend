@@ -47,16 +47,19 @@ const QrScanner = () => {
       alert("Please scan a QR code first");
       return;
     }
-    console.log(scannedData);
+    const parsedData = JSON.parse(scannedData);
+    console.log(parsedData);
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/${action}`,
-        { scannedData, count }
-      );
+      console.log("aagaya");
+      const response = await axios.post(`http://localhost:8000/api/${action}`, {
+        parsedData,
+        count,
+      });
       console.log(response);
       alert(data.message || "Action completed");
     } catch (error) {
       alert("Error processing request");
+      console.log(error);
     }
   };
 
