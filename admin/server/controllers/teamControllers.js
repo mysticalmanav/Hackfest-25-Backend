@@ -182,7 +182,7 @@ export const runEveryMinute = async () => {
       }
     });
     // Add the logic for the task you want to execute here
-  }, 6000); // 60000 ms = 1 minute
+  }, 60000); // 60000 ms = 1 minute
 };
 
 // Call the function to start the interval
