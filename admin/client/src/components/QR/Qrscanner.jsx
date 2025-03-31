@@ -39,6 +39,10 @@ const QrScanner = () => {
 
   const sendData = async (action) => {
     console.log(action);
+    if (!count) {
+      alert("fill the count of teammate");
+      return;
+    }
     if (!scannedData) {
       alert("Please scan a QR code first");
       return;
@@ -74,6 +78,51 @@ const QrScanner = () => {
               <button style={styles.button} onClick={() => sendData("out")}>
                 Check OUT
               </button>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  margin: "10px",
+                  padding: "10px",
+                  backgroundColor: "#fff",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+                  width: "fit-content",
+                }}
+              >
+                <label
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    color: "#333",
+                  }}
+                >
+                  Enter the count of teammate
+                </label>
+                <br />
+                <input
+                  type="number"
+                  style={{
+                    marginTop: "5px",
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    outline: "none",
+                    fontSize: "14px",
+                  }}
+                  value={count}
+                  onChange={(e) => {
+                    setCount(e.target.value);
+                  }}
+                  placeholder="Enter a number"
+                />
+              </div>
             </div>
           </div>
         ) : (

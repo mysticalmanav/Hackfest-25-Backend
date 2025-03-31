@@ -20,7 +20,7 @@ const TeamSchema = new mongoose.Schema(
       default: { date: null, count: 0 } // Default object with null values
     },
 
-    totalTime:{type: Number, default: 0},
+    totalTime:{type: Number, default: 0},   
   },
   { timestamps: true }
 );
