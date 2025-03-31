@@ -160,15 +160,16 @@ export const runEveryMinute = async () => {
   setInterval(async () => {
     const teams = await Team.find({});
     teams.forEach(async (team) => {
-      const { outTime, count } = team;
+      const { outTime } = team;
       if (outTime.date) {
         const newOutTime = new Date();
-        const diffInMinutes = count * (newOutTime - new Date(outTime.date));
+        let diffInMinutes = outTime.count * (newOutTime - new Date(outTime.date));
+        console.log("diffInMinutes", diffInMinutes, team.outTime.count);
         if (diffInMinutes >= 5000) {
           await Team.findOneAndUpdate(
             { uniqueId: team.uniqueId },
             {
-              outTime: { date: newOutTime, count: 0 },
+              outTime: { date: newOutTime, count: outTime.count},
               totalTime: team.totalTime + diffInMinutes,
             }
           );
@@ -181,7 +182,7 @@ export const runEveryMinute = async () => {
       }
     });
     // Add the logic for the task you want to execute here
-  }, 60000); // 60000 ms = 1 minute
+  }, 6000); // 60000 ms = 1 minute
 };
 
 // Call the function to start the interval
