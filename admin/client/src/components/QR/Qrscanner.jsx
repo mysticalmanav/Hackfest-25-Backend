@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const QrScanner = () => {
   const [scannedData, setScannedData] = useState("");
   const [scanner, setScanner] = useState(null);
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     if (scanner) {
       scanner.clear().catch((error) => {
@@ -56,6 +59,12 @@ const QrScanner = () => {
         count,
       });
       console.log(response);
+      if (response?.data?.success) {
+        alert("Action completed successfully");
+        setScannedData("");
+        setCount(0);
+        navigate("/");
+      }
       alert(data.message || "Action completed");
     } catch (error) {
       alert("Error processing request");
