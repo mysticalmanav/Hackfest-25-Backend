@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Users, User, School, Calendar, Trophy, LogOut, Mail, X, ExternalLink, QrCode, Eye, EyeOff } from 'lucide-react';
 import { QRCodeCanvas } from 'qrcode.react';
-import toast from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 const Dashboard = () => {
   const navigate = useNavigate();
