@@ -7,6 +7,7 @@ import grull from "../../assets/grull.svg";
 import matics from "../../assets/matiks.png";
 import chillr from "../../assets/chillr.webp";
 import productspace from "../../assets/productspace.png";
+import ps10 from "../../assets/ps10.png";
 
 const ProblemStatement = ({ companies }) => {
   // Sample company data - replace with your actual data
@@ -78,6 +79,14 @@ const ProblemStatement = ({ companies }) => {
       description:
         "Zomato Daily - Reclaiming the Everyday Order",
     },
+    {
+      id: 10,
+      name: "njm",
+      logo: ps10,
+      docsLink: "/problemstatement/ps10",
+      description:
+        "AI-Powered Autonomous Border Surveillance System",
+    }
   ];
 
   const companiesData = companies || sampleCompanies;

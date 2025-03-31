@@ -20,7 +20,7 @@ import Ps6 from "./Components/problemstatemant/ps6.jsx";
 import Ps7 from "./Components/problemstatemant/ps7.jsx";
 import Ps8 from "./Components/problemstatemant/ps8.jsx";
 import Ps9 from "./Components/problemstatemant/ps9.jsx";
-
+import Ps10 from "./Components/problemstatemant/ps10.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -48,6 +48,7 @@ function App() {
           <Route path="/problemstatement/ps7" element={<Ps7 />} />
           <Route path="/problemstatement/ps8" element={<Ps8 />} />
           <Route path="/problemstatement/ps9" element={<Ps9 />} />
+          <Route path="/problemstatement/ps10" element={<Ps10 />} />
         </Routes>
       </BrowserRouter>
     </>
