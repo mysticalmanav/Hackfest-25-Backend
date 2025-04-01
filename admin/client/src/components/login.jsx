@@ -10,8 +10,8 @@ const Login = () => {
   const handleLogin = async () => {
     try {
     console.log(`${import.meta.env.VITE_backendUrl}/api/login`);
-      const response = await axios.post(`${import.meta.env.VITE_backendUrl}/api/login`, { username, password });
-      if (response.status === 200) {
+    const response = await axios.post(`${import.meta.env.VITE_backendUrl}/api/login`, { username, password });
+      if (response.status === 200) { 
         localStorage.setItem('username', username);
         localStorage.setItem('password',password)
         setIsVerified(true);
