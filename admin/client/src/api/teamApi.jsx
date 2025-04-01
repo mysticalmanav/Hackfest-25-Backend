@@ -26,7 +26,7 @@ export const fetchTeams = async () => {
 
 export const updateTeamStatus = async (id, status, password) => {
   try {
-    const response = await axios.patch(`${import.meta.env.VITE_backendUrl}/api/teams/${id}/status`, { status, username:localStorage.getItem("username") ,password: localStorage.getItem("password")});
+    const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/api/teams/${id}/status`, { status, username:localStorage.getItem("username") ,password: localStorage.getItem("password")});
     const data=response.data;
     if (!response.status === 200) {
       throw new Error("Failed to update team status");

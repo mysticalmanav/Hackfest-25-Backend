@@ -9,8 +9,8 @@ const Login = () => {
     const navigate = useNavigate();
   const handleLogin = async () => {
     try {
-    console.log(`${import.meta.env.VITE_backendUrl}/api/login`);
-    const response = await axios.post(`${import.meta.env.VITE_backendUrl}/api/login`, { username, password });
+    console.log(`${import.meta.env.VITE_BASE_URL}/api/login`);
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/login`, { username, password });
       if (response.status === 200) { 
         localStorage.setItem('username', username);
         localStorage.setItem('password',password)

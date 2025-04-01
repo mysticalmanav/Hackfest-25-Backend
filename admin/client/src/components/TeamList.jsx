@@ -18,7 +18,7 @@ const TeamList = () => {
       try {
         const username = "username";
         const password = "password";
-        const response = await axios.post(`${import.meta.env.VITE_backendUrl}/api/login`, { username: localStorage.getItem(username), password : localStorage.getItem(password) });
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/login`, { username: localStorage.getItem(username), password : localStorage.getItem(password) });
         if (response.status === 200) {
           setTeams(response.data.data);
     
