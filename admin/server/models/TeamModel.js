@@ -12,7 +12,7 @@ const TeamSchema = new mongoose.Schema(
     teamName: { type: String, required: true },
     leaderName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    leaderCollege: { type: String, required: true },
+    leaderCollege: { type: String, required: true }, 
     leaderYear: { type: String, required: true },
     memberCount: { type: Number, required: true },
     members: { type: [MemberSchema] },
