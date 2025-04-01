@@ -4,11 +4,6 @@ import { fetchTeams, updateTeamStatus } from "../api/teamApi";
 const TeamList = () => {
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [password, setPassword] = useState("");
-  const [isPasswordPromptOpen, setIsPasswordPromptOpen] = useState(
-    !localStorage.getItem("password")
-  );
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [actionType, setActionType] = useState(null); // 'verify' or 'unverify'
@@ -17,7 +12,6 @@ const TeamList = () => {
 
   // Fetch teams on component mount
   useEffect(() => {
-    setIsPasswordPromptOpen(true);
     const handlePasswordSubmit = async () => {
       try {
         const response = await fetch(
@@ -27,54 +21,25 @@ const TeamList = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ password: password }),
+            body: JSON.stringify({
+              username: localStorage.getItem("username"),
+              password: localStorage.getItem("password"),
+            }),
           }
         );
         if (response.ok) {
-          localStorage.setItem("password", password);
-          setIsAuthenticated(true);
-          setIsPasswordPromptOpen(false);
           const data = await response.json();
           setTeams(data.data);
         } else {
-          alert("Invalid password. Please try again.");
+          alert("Invalid credentials. Please try again.");
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("Error validating password. Please try again.");
+        alert("Error validating credentials. Please try again.");
       }
     };
     handlePasswordSubmit();
   }, []);
-
-  const handlePasswordSubmit = async () => {
-    alert('sdjvbnbns');
-    try {
-      const response = await fetch(
-        `http://localhost:8000/api/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password: password }),
-        }
-      );
-      console.log(response);
-      if (response.ok) {
-        localStorage.setItem("password", password);
-        setIsAuthenticated(true);
-        setIsPasswordPromptOpen(false);
-        const data = await response.json();
-        setTeams(data.data);
-      } else {
-        alert("Invalid password. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error validating password. Please try again.");
-    }
-  };
 
   const handleVerify = async (id) => {
     const updatedTeam = await updateTeamStatus(id, "verified");
@@ -324,27 +289,8 @@ const TeamList = () => {
     },
   };
 
-  return (
-    <>
-      {isPasswordPromptOpen && (
-        <div style={styles.modalOverlay}>
-          <div style={styles.modalContent}>
-            <h2>Enter Admin Password</h2>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "10px" }}
-            />
-            <button onClick={handlePasswordSubmit} style={styles.confirmButton}>
-              Submit
-            </button>
-          </div>
-        </div>
-      )}
-
-      {isAuthenticated && (
-        <div style={styles.container}>
+return (
+      <div style={styles.container}>
           <h1 style={styles.heading}>Team Verification</h1>
           <ul style={styles.teamList}>
             {teams.map((team) => (
@@ -359,11 +305,11 @@ const TeamList = () => {
                 onClick={() => handleTeamClick(team)}
               >
                 <div style={styles.teamName}>
-                  {team.teamName}
+                  TeamName : {team.teamName}
                   <span>  </span>
                   {team.totalTime/60000} minutes
                   <span> </span>
-                  {team.uniqueId}
+                  UniqueId : {team.uniqueId}
                   <span
                     style={{
                       ...styles.statusBadge,
@@ -509,8 +455,6 @@ const TeamList = () => {
             </div>
           )}
         </div>
-      )}
-    </>
   );
 };
 
