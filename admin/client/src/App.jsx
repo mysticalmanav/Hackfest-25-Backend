@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import TeamList from "./components/TeamList.jsx";
-import QrScanner from "./components/QR/Qrscanner.jsx";
+import QrScanner from "./components/QrScanner.jsx";
 import Login from "./components/login.jsx";
 
 function App() {

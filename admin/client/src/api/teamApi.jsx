@@ -1,4 +1,6 @@
 // src/api/teamApi.js
+import axios from "axios";
+
 export const fetchTeams = async () => {
   try {
     const response = await fetch(`${import.meta.env.VITE_BASE_URL}/api/teams`, {
@@ -6,7 +8,7 @@ export const fetchTeams = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password: localStorage.getItem("password") }),
+      body: JSON.stringify({ username:localStorage.getItem("username"),password: localStorage.getItem("password") }),
     });
 
     
@@ -24,22 +26,14 @@ export const fetchTeams = async () => {
 
 export const updateTeamStatus = async (id, status, password) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_BASE_URL}/api/teams/${id}/status`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status,  password: localStorage.getItem("password") }),
-      }
-    );
+    const response = await axios.patch(`${import.meta.env.VITE_backendUrl}/api/teams/${id}/status`, { status, username:localStorage.getItem("username") ,password: localStorage.getItem("password")});
 
+    console.log("Response:", response.data);
+    data=response.data;
     if (!response.ok) {
       throw new Error("Failed to update team status");
     }
 
-    const data = await response.json();
     // console.log(data.data);
     return data.data; // Return the updated team
   } catch (error) {

@@ -4,7 +4,8 @@ import Team from "../models/TeamModel.js"; // Import the Team model
 // middleware/passwordCheckMiddleware.js
 
 export const checkPassword = (req, res, next) => {
-  const { password } = req.body;
+  console.log("checkPassword middleware",req.body);
+  const { username,password } = req.body;
   if (!process.env.pass) {
     console.error("Server Error: Password environment variable not set");
     return res
@@ -12,20 +13,34 @@ export const checkPassword = (req, res, next) => {
       .json({ success: false, message: "Server configuration error" });
   }
 
-  const isValidPassword = (password) => {
+  const isValidPasswordadmin = (password) => {
     return password === process.env.pass;
   };
-
-  if (!password || !isValidPassword(password)) {
+  const isValidPassworduser = (password) => {
+    return password === process.env.passofuser;
+  };
+  if (username!=="admin"&&username!=="user") {
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid username" });
+  }
+  if (username=="admin"&&(!password || !isValidPasswordadmin(password))) {
     return res
       .status(401)
       .json({ success: false, message: "Invalid password" });
   }
-
+  if (username=="user"&&(!password || !isValidPassworduser(password))) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Invalid password" });
+  }
   next();
 };
 // Fetch all teams
 export const getAllTeams = async (req, res) => {
+  if (req.body.username==!"admin") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   try {
     // Fetch all teams from the database
     const teams = await Team.find({});
@@ -42,11 +57,20 @@ export const getAllTeams = async (req, res) => {
 };
 export const login = async (req, res) => {
   const teams = await Team.find({});
-  res.status(200).json({ success: true, data: teams });
+  if (req.body.username=="admin") {
+    res.status(200).json({ success: true, data: teams });
+  }
+  else{
+    res.status(200).json({ success: true});
+  }
 };
 
 // Update team status
 export const updateTeamStatus = async (req, res) => {
+  console.log(req.body);
+  if (req.body.username!=="admin") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
   const { id } = req.params;
   const { status } = req.body;
 
@@ -164,7 +188,7 @@ export const runEveryMinute = async () => {
       if (outTime.date) {
         const newOutTime = new Date();
         let diffInMinutes = outTime.count * (newOutTime - new Date(outTime.date));
-        console.log("diffInMinutes", diffInMinutes, team.outTime.count);
+        // console.log("diffInMinutes", diffInMinutes, team.outTime.count);
         if (diffInMinutes >= 5000) {
           await Team.findOneAndUpdate(
             { uniqueId: team.uniqueId },

@@ -18,6 +18,6 @@ router.post("/login", checkPassword, login);
 // router.post("/login", login);   
 // Route to update team status
 router.patch("/teams/:id/status", checkPassword, updateTeamStatus);
-router.post("/in", teamIn);
-router.post("/out", teamOut);
+router.post("/in",checkPassword,teamIn);
+router.post("/out", checkPassword,teamOut);
 export default router;
