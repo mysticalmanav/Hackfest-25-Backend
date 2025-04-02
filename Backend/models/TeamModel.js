@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
- 
+
 const MemberSchema = new mongoose.Schema({
   name: { type: String, required: true },
   college: { type: String, required: true },
@@ -15,7 +15,7 @@ const TeamSchema = new mongoose.Schema(
     leaderYear: { type: String, required: true },
     memberCount: { type: Number, required: true },
     members: { type: [MemberSchema] },
-    idProofUrl: { type: String, required: true }, 
+    idProofUrl: { type: String, required: true },
     uniqueId: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     status: { type: String, required: true, default: "pending" },
@@ -32,4 +32,5 @@ const TeamSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-export default TeamSchema;
+const Team = mongoose.model("Team", TeamSchema);
+export default Team;
