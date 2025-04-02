@@ -1,3 +1,11 @@
+import mongoose from "mongoose";
+ 
+const MemberSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  college: { type: String, required: true },
+  year: { type: String, required: true },
+  email: { type: String, required: true },
+});
 const TeamSchema = new mongoose.Schema(
   {
     teamName: { type: String, required: true },
@@ -7,20 +15,21 @@ const TeamSchema = new mongoose.Schema(
     leaderYear: { type: String, required: true },
     memberCount: { type: Number, required: true },
     members: { type: [MemberSchema] },
-    idProofUrl: { type: String, required: true },
+    idProofUrl: { type: String, required: true }, 
     uniqueId: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     status: { type: String, required: true, default: "pending" },
     referral: { type: String, default: "" },
-    outTime: { 
+    outTime: {
       type: {
         date: { type: String, default: null },
-        count: { type: Number, default: 0 }
+        count: { type: Number, default: 0 },
       },
-      default: { date: null, count: 0 } // Default object with null values
+      default: { date: null, count: 0 }, // Default object with null values
     },
 
-    totalTime:{type: Number, default: 0},   
+    totalTime: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
+export default TeamSchema;
