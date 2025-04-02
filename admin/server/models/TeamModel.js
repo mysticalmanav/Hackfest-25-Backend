@@ -30,6 +30,9 @@ const TeamSchema = new mongoose.Schema(
     },
 
     totalTime:{type: Number, default: 0},
+    checkedin:{type: Number , default:0},
+    attendedopeningceremony: {type: Number , default:0},
+    
   },
   { timestamps: true }
 );

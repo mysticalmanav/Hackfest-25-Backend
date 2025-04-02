@@ -109,6 +109,8 @@ const TeamList = () => {
               <span>TeamName: {team.teamName}</span>
               <span>{team.totalTime / 60000} minutes</span>
               <span>UniqueId: {team.uniqueId}</span>
+              <span>ceremony: {team.attendedopeningceremony}</span>
+              <span>checkedin: {team.checkedin}</span>
               <span
                 className={`px-2 py-1 rounded-full text-xs font-semibold uppercase ${
                   team.status === "pending"
