@@ -20,6 +20,7 @@ connectToMongoDB()
   .then(() => {
     app.listen(port, () => {
       console.log(`Server running on ${port}`);
-    });
+    });  
   })
   .catch((err) => console.log(`${err} did not connect`));
+ 

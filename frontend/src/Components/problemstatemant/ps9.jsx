@@ -58,7 +58,7 @@ const Ps9 = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-2xl font-semibold text-orange-100 mb-4">Deadline</h2>
-          <h3 className="text-xl font-semibold text-orange-100 mb-4">Please complete the task before 12th Apr'25 EOD.</h3>
+          <h3 className="text-xl font-semibold text-orange-100 mb-4">Please complete the task before 6th Apr'25 6 p.m </h3>
           <ul className="text-gray-400  pl-5 space-y-2">
             <li><strong>Product Understanding and Overview</strong><ul  className="text-gray-400 list-disc pl-5 space-y-2">
             <li>Review the current Swiggy app, its features, and offerings.</li>

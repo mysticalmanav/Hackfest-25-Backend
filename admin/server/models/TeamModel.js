@@ -12,7 +12,7 @@ const TeamSchema = new mongoose.Schema(
     teamName: { type: String, required: true },
     leaderName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    leaderCollege: { type: String, required: true },
+    leaderCollege: { type: String, required: true }, 
     leaderYear: { type: String, required: true },
     memberCount: { type: Number, required: true },
     members: { type: [MemberSchema] },
@@ -30,6 +30,9 @@ const TeamSchema = new mongoose.Schema(
     },
 
     totalTime:{type: Number, default: 0},
+    checkedin:{type: Number , default:0},
+    attendedopeningceremony: {type: Number , default:0},
+    
   },
   { timestamps: true }
 );

@@ -54,10 +54,13 @@ const QrScanner = () => {
     console.log(parsedData);
     try {
       console.log("aagaya");
-      const response = await axios.post(`http://localhost:8000/api/${action}`, {
-        parsedData,
-        count,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/${action}`,
+        {
+          parsedData,
+          count,
+        }
+      );
       console.log(response);
       if (response?.data?.success) {
         alert("Action completed successfully");

@@ -1,3 +1,11 @@
+import mongoose from "mongoose";
+
+const MemberSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  college: { type: String, required: true },
+  year: { type: String, required: true },
+  email: { type: String, required: true },
+});
 const TeamSchema = new mongoose.Schema(
   {
     teamName: { type: String, required: true },
@@ -19,10 +27,10 @@ const TeamSchema = new mongoose.Schema(
       },
       default: { date: null, count: 0 }, // Default object with null values
     },
+    checkedin:{type: Number , default:0},
+    attendedopeningceremony: {type: Number , default:0},
 
     totalTime: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
-
-
