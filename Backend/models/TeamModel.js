@@ -12,15 +12,17 @@ const TeamSchema = new mongoose.Schema(
     password: { type: String, required: true },
     status: { type: String, required: true, default: "pending" },
     referral: { type: String, default: "" },
-    outTime: { 
+    outTime: {
       type: {
         date: { type: String, default: null },
-        count: { type: Number, default: 0 }
+        count: { type: Number, default: 0 },
       },
-      default: { date: null, count: 0 } // Default object with null values
+      default: { date: null, count: 0 }, // Default object with null values
     },
 
-    totalTime:{type: Number, default: 0},   
+    totalTime: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
+
+
