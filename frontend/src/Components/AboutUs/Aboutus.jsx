@@ -6,7 +6,7 @@ const AboutHackFestPage = () => {
   return (
     <div className="min-h-screen relative py-[50px] bg-zinc-900">
       <div className="w-full min-h-screen flex flex-col items-center overflow-hidden">
-        {/* Title */}
+        {/* Titlesdafdvdvsd */}
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
