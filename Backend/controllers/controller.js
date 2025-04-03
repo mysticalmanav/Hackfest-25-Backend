@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import Email from "../models/EmailModel.js";
 import cloudinary from "cloudinary";
-import Team from "../models/TeamModel.js";
+import{ Team} from "../models/TeamModel.js";
 import crypto from "crypto";
 
 const transporter = nodemailer.createTransport({

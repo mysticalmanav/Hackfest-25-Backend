@@ -25,7 +25,7 @@ const TeamSchema = new mongoose.Schema(
         date: { type: String, default: null },
         count: { type: Number, default: 0 },
       },
-      default: { date: null, count: 0 }, // Default object with null values
+      default: { date: null, count: 0 },
     },
     checkedin:{type: Number , default:0},
     attendedopeningceremony: {type: Number , default:0},
@@ -34,3 +34,6 @@ const TeamSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+export const Team = mongoose.model("Team", TeamSchema);
+export const Member = mongoose.model("Member", MemberSchema);
