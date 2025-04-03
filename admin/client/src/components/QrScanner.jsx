@@ -66,7 +66,6 @@ const QrScanner = () => {
         alert("Action completed successfully");
         setScannedData("");
         setCount(0);
-        navigate("/");
       } else {
         alert(response.data.message || "Action completed");
       }
