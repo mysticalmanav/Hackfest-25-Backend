@@ -234,8 +234,8 @@ export const runEveryMinute = async () => {
           await Team.findOneAndUpdate(
             { uniqueId: team.uniqueId },
             {
-              outTime: { date: newOutTime, count: outTime.count },
-              totalTime: team.totalTime + diffInMinutes,
+              outTime: { date: newOutTime, count: 0 },
+              totalTime: 0,
             }
           );
         }
