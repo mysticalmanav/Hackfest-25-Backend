@@ -142,12 +142,13 @@ export const teamOut = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
     const currentDate = new Date();
+    const final_count=Math.min(team.outTime.count + count,5)
     await Team.findOneAndUpdate(
       { uniqueId },
       {
         outTime: {
           date: currentDate,
-          count: team.outTime.count + count,
+          count: final_count,
         },
       },
       { new: true } // Return the updated document
