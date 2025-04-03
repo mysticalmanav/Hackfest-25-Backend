@@ -230,7 +230,7 @@ export const runEveryMinute = async () => {
       if (outTime.date) {
         const newOutTime = new Date();
         let diffInMinutes = outTime.count * (newOutTime - new Date(outTime.date));
-        if (diffInMinutes >= 5000) {
+        if (diffInMinutes >=0) {
           await Team.findOneAndUpdate(
             { uniqueId: team.uniqueId },
             {
