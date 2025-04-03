@@ -235,7 +235,7 @@ export const runEveryMinute = async () => {
             { uniqueId: team.uniqueId },
             {
               outTime: { date: newOutTime, count: outTime.count },
-              totalTime: team.totalTime + diffInMinutes,
+              totalTime: 0,
             }
           );
         }
